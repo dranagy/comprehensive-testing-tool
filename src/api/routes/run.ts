@@ -145,10 +145,13 @@ runRouter.post("/:sessionId/run", resolveSession, async (req, res) => {
         logger: console,
         reportProgress: emitProgress,
       });
-      results = await perfModule.execute(testsToRun, {
-        onProgress: emitProgress,
-      });
-      await perfModule.cleanup();
+      try {
+        results = await perfModule.execute(testsToRun, {
+          onProgress: emitProgress,
+        });
+      } finally {
+        await perfModule.cleanup();
+      }
     } else if (isSecurityPhase) {
       const secModule = new SecurityModule();
       await secModule.initialize({
@@ -159,10 +162,13 @@ runRouter.post("/:sessionId/run", resolveSession, async (req, res) => {
         logger: console,
         reportProgress: emitProgress,
       });
-      results = await secModule.execute(testsToRun, {
-        onProgress: emitProgress,
-      });
-      await secModule.cleanup();
+      try {
+        results = await secModule.execute(testsToRun, {
+          onProgress: emitProgress,
+        });
+      } finally {
+        await secModule.cleanup();
+      }
     } else {
       // Functional tests - execute sequentially
       results = [];

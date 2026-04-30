@@ -44,10 +44,10 @@ export default function IngestPage({ params }: { params: Promise<{ sessionId: st
     setError(null);
     try {
       const result = await ingest.upload(sessionId, fileArr);
-      const docs = (result.documents as Array<{ name: string; format: string; testsGenerated?: number }>) ?? [];
+      const docs = (result.results as Array<{ filename: string; format: string; testsGenerated?: number }>) ?? [];
       setUploadedDocs((prev) => [
         ...prev,
-        ...docs.map((d) => ({ name: d.name, format: d.format, testsGenerated: d.testsGenerated ?? 0 })),
+        ...docs.map((d) => ({ name: d.filename, format: d.format, testsGenerated: d.testsGenerated ?? 0 })),
       ]);
       fetchSession();
     } catch (err: unknown) {

@@ -35,7 +35,9 @@ export default function ApprovalPage({ params }: { params: Promise<{ sessionId: 
     try {
       const updated = await review.resolveGate(sessionId, phase, action, comments[phase] || undefined);
       setGates((prev) => prev.map((g) => (g.phase === phase ? updated : g)));
-    } catch {}
+    } catch (err) {
+      showToast(err instanceof Error ? err.message : "Failed to resolve gate", "error");
+    }
     setActing(null);
   }
 

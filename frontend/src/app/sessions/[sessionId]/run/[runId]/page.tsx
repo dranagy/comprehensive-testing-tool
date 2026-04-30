@@ -67,7 +67,9 @@ export default function RunProgressPage({ params }: { params: Promise<{ sessionI
       await run.cancel(sessionId, runId);
       wsRef.current?.close();
       setCompleted(true);
-    } catch {}
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to cancel run");
+    }
   }
 
   const passed = summary?.passed ?? testCaseProgress.filter((t) => t.status === "passed").length;

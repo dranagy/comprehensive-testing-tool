@@ -52,6 +52,9 @@
   --color-status-failed: #dc2626;
   --color-status-error: #ea580c;
 
+  --color-on-error-container: #410002;
+  --color-on-success-container: #002108;
+
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Manrope", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
