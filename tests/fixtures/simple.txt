@@ -1,0 +1,2 @@
+Test case: Homepage loads
+Navigate to / and verify the page loads successfully.
