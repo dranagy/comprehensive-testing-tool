@@ -15,9 +15,6 @@ const BLOCKED_HOSTS = new Set([
   "169.254.169.254",          // AWS/GCP instance metadata
   "169.254.169.253",          // Azure instance metadata
   "metadata.google.internal",
-  "localhost",
-  "127.0.0.1",
-  "::1",
 ]);
 
 function validateTargetUrl(raw: string): void {

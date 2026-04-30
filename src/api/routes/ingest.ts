@@ -20,8 +20,8 @@ export const ingestRouter = Router();
 // Upload documents
 ingestRouter.post(
   "/:sessionId/upload",
-  resolveSession,
   upload.array("files", 20),
+  resolveSession,
   async (req, res) => {
     const files = req.files as Express.Multer.File[];
     if (!files || files.length === 0) {
