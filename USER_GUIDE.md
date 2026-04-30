@@ -868,9 +868,11 @@ Content-Type: multipart/form-data
 **Response:**
 ```json
 {
-  "documents": [
-    { "name": "user-guide.pdf", "format": "PDF", "testsGenerated": 5 },
-    { "name": "test-cases.md", "format": "MD", "testsGenerated": 3 }
+  "documentsProcessed": 2,
+  "totalTestsGenerated": 8,
+  "results": [
+    { "filename": "user-guide.pdf", "format": "PDF", "testsGenerated": 5 },
+    { "filename": "test-cases.md", "format": "MD", "testsGenerated": 3 }
   ]
 }
 ```

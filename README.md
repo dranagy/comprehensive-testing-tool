@@ -1,6 +1,8 @@
-# @ctt/cli — Comprehensive Testing Tool
+# Comprehensive Testing Tool (CTT)
 
-A unified local testing platform combining functional, performance, and DAST security testing with a human-in-the-loop approval workflow.
+A unified local testing platform combining functional, performance, and DAST security testing with a human-in-the-loop approval workflow. Includes both a **CLI** and a **web-based dashboard** for managing the entire testing lifecycle.
+
+**Repository:** [github.com/dranagy/comprehensive-testing-tool](https://github.com/dranagy/comprehensive-testing-tool)
 
 ## Features
 
@@ -12,22 +14,31 @@ A unified local testing platform combining functional, performance, and DAST sec
 - **Selective execution** — run specific tests, filter by tag, re-run failures, dry-run mode
 - **Full audit trail** — insert-only audit log for compliance review, export to JSON or HTML
 - **Session resumption** — interrupt and resume sessions at any approval gate
+- **Web dashboard** — Next.js 16 + React 19 + Tailwind CSS v4 frontend with interactive charts, real-time WebSocket progress, toast notifications, and session-scoped navigation
+- **REST API** — Express 5 server with 23 endpoints + WebSocket for live test progress
 
 ## Installation
 
 ```bash
 # From source
-git clone <repo-url>
+git clone https://github.com/dranagy/comprehensive-testing-tool.git
 cd comprehensive-testing-tool
 npm install
 npm run build
 
-# Use globally
+# Install frontend dependencies
+cd frontend
+npm install
+
+# Use CLI globally
+cd ..
 npm link
 ctt --help
 ```
 
 ## Quick Start
+
+### CLI
 
 ```bash
 # 1. Initialize a project
@@ -49,6 +60,19 @@ ctt run --phase functional
 ctt report summary
 ```
 
+### Web UI
+
+```bash
+# Terminal 1 — Start the API server
+ctt serve --port 3456
+
+# Terminal 2 — Start the frontend
+cd frontend
+npm run dev
+```
+
+Open http://localhost:3000 to use the web dashboard for creating sessions, uploading documents, reviewing tests, running tests, and viewing interactive reports.
+
 ## CLI Commands
 
 | Command | Description |
@@ -60,6 +84,7 @@ ctt report summary
 | `ctt review list/show/edit/approve/reject` | Review and approve generated tests |
 | `ctt run [ids...]` | Execute tests with filtering and selection options |
 | `ctt report [type]` | Generate reports (summary, functional, performance, security, audit) |
+| `ctt serve` | Start the REST API server for the web UI |
 
 ### Run Options
 
@@ -114,13 +139,18 @@ src/
 ├── cli/                    # Commander.js CLI entry point and commands
 │   ├── commands/           # init, session, ingest, generate, review, run, report
 │   └── output.ts           # JSON, terminal, JUnit output formatters
+├── api/                    # Express 5 REST API + WebSocket
+│   ├── server.ts           # App setup, route mounting, error handler
+│   ├── routes/             # sessions, ingest, generate, review, run, reports, config
+│   ├── middleware/          # Session resolver, error handler
+│   └── db.ts               # Database connection shared across API routes
 ├── core/                   # Core engine
 │   ├── session.ts          # Session state machine (phase transitions)
 │   ├── approval-gate.ts    # Human-in-the-loop approval gates
 │   ├── audit-log.ts        # Insert-only audit logging
 │   ├── runner.ts           # Module orchestration through phase pipeline
 │   └── config.ts           # Configuration loading and validation
-├── db/                     # SQLite persistence layer
+├── db/                     # SQLite persistence layer (BetterSQLite3)
 │   ├── schema.ts           # Table definitions (8 entities)
 │   ├── migrations.ts       # Schema version tracking
 │   └── repositories/       # CRUD repositories for each entity
@@ -147,17 +177,87 @@ src/
     ├── types.ts            # All TypeScript type definitions
     ├── errors.ts           # Structured error classes
     └── logger.ts           # Structured logging
+
+frontend/                    # Next.js 16 web dashboard
+├── src/
+│   ├── app/                # 18 page routes (App Router)
+│   │   ├── page.tsx                         # Dashboard
+│   │   ├── settings/                        # Settings
+│   │   ├── sessions/new/                    # Create session
+│   │   └── sessions/[sessionId]/            # Session pages
+│   │       ├── page.tsx                     # Session detail
+│   │       ├── ingest/                      # Document upload
+│   │       ├── test-cases/                  # Test case list/detail/edit
+│   │       ├── approval/                    # Approval gates
+│   │       ├── run/                         # Test execution + progress
+│   │       ├── reports/                     # 5 report views
+│   │       └── export/                      # Session export
+│   ├── components/
+│   │   ├── layout/         # AppShell, Sidebar, TopBar
+│   │   └── ui/             # Button, StatusBadge, Toast, ErrorBoundary, etc.
+│   └── lib/
+│       ├── api-client.ts   # Typed API client (all endpoints)
+│       ├── session-context.tsx  # Session state management
+│       └── types.ts        # Frontend type definitions
+└── package.json
+
+tests/                       # 247 tests across 26 files
+├── unit/                    # Core, modules, CLI, API routes, WebSocket
+├── integration/             # Full workflow, error paths, execution tests
+├── fixtures/                # Sample docs, configs, test app
+└── helpers/                 # Test database utilities
 ```
 
 ## Development
 
 ```bash
+# Backend
 npm run build          # Compile TypeScript
-npm test               # Run all tests
+npm test               # Run all tests (247 tests, 26 files)
 npm run test:watch     # Watch mode
-npm run lint           # ESLint
-npm run format         # Prettier
+
+# Frontend
+cd frontend
+npm run dev            # Development server (http://localhost:3000)
+npm run build          # Production build
+
+# Both servers together
+ctt serve              # Terminal 1: API on port 3456
+cd frontend && npm run dev  # Terminal 2: Frontend on port 3000
 ```
+
+## API Endpoints
+
+| Method | Path | Description |
+|--------|------|-------------|
+| GET | `/api/sessions` | List all sessions |
+| POST | `/api/sessions` | Create a session |
+| GET | `/api/sessions/:id` | Get session details |
+| POST | `/api/sessions/:id/resume` | Resume a session |
+| POST | `/api/sessions/:id/advance` | Advance to next phase |
+| GET | `/api/sessions/:id/export` | Export session data |
+| POST | `/api/ingest/:id/upload` | Upload documents (multipart) |
+| POST | `/api/generate/:id` | Generate all test phases |
+| POST | `/api/generate/:id/:phase` | Generate tests by phase |
+| GET | `/api/review/:id/test-cases` | List test cases |
+| GET | `/api/review/:id/test-cases/:tid` | Get test case detail |
+| PUT | `/api/review/:id/test-cases/:tid` | Update test case |
+| POST | `/api/review/:id/approve` | Approve test cases |
+| POST | `/api/review/:id/test-cases/:tid/reject` | Reject a test case |
+| GET | `/api/review/:id/gates` | List approval gates |
+| POST | `/api/review/:id/gates/:phase` | Resolve approval gate |
+| POST | `/api/run/:id/run` | Start test execution |
+| POST | `/api/run/:id/run/:rid/cancel` | Cancel a running test |
+| GET | `/api/reports/:id/summary` | Summary report |
+| GET | `/api/reports/:id/functional` | Functional report |
+| GET | `/api/reports/:id/performance` | Performance report |
+| GET | `/api/reports/:id/security` | Security report |
+| GET | `/api/reports/:id/audit` | Audit trail |
+| GET | `/api/config` | Get configuration |
+| PUT | `/api/config` | Update configuration |
+| POST | `/api/config/reset` | Reset to defaults |
+| GET | `/api/health` | Health check |
+| WS | `/ws?runId=:rid` | WebSocket progress stream |
 
 ## License
 
