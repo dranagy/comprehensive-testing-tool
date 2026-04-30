@@ -173,7 +173,7 @@ export const config = {
 
 // Health
 export const health = {
-  check: () => request<{ status: string; uptime: number }>("/health"),
+  check: () => request<{ status: string; timestamp: string }>("/health"),
 };
 
 // WebSocket hook helper

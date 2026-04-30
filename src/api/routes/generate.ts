@@ -31,7 +31,8 @@ generateRouter.post("/:sessionId", resolveSession, async (req, res) => {
     let generatedCount = 0;
 
     if (phase === "FUNCTIONAL") {
-      generatedCount = existing.length;
+      // Functional tests are generated via the ingest route, not here
+      generatedCount = 0;
     } else if (phase === "PERFORMANCE") {
       const functionalTests = testCaseRepo.getBySession(session.id, "FUNCTIONAL");
       if (functionalTests.length > 0) {

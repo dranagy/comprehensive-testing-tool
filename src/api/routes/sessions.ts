@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { URL } from "node:url";
 import { SessionManager } from "../../core/session.js";
 import { AuditLogger } from "../../core/audit-log.js";
 import { TestCaseRepository } from "../../db/repositories/test-case-repo.js";
@@ -9,6 +10,30 @@ import { ApiError } from "../middleware/error-handler.js";
 import { resolveSession } from "../middleware/session-resolver.js";
 import "../types.js";
 import type { SessionConfig, Session } from "../../shared/types.js";
+
+const BLOCKED_HOSTS = new Set([
+  "169.254.169.254",          // AWS/GCP instance metadata
+  "169.254.169.253",          // Azure instance metadata
+  "metadata.google.internal",
+  "localhost",
+  "127.0.0.1",
+  "::1",
+]);
+
+function validateTargetUrl(raw: string): void {
+  let parsed: URL;
+  try {
+    parsed = new URL(raw);
+  } catch {
+    throw new ApiError(400, "targetUrl must be a valid URL");
+  }
+  if (!["http:", "https:"].includes(parsed.protocol)) {
+    throw new ApiError(400, "targetUrl must use http or https");
+  }
+  if (BLOCKED_HOSTS.has(parsed.hostname.toLowerCase())) {
+    throw new ApiError(400, "targetUrl points to a blocked address");
+  }
+}
 
 export const sessionsRouter = Router();
 
@@ -31,6 +56,7 @@ sessionsRouter.post("/", (req, res) => {
   if (!targetUrl) {
     throw new ApiError(400, "targetUrl is required");
   }
+  validateTargetUrl(targetUrl);
 
   const db = getDb();
   const sessionManager = new SessionManager(db);

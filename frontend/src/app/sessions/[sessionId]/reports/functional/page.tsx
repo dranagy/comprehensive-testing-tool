@@ -209,7 +209,9 @@ function buildDurationBuckets(results: FunctionalResult[]) {
   for (let i = 0; i < bucketCount; i++) {
     const lo = i * bucketSize;
     const hi = (i + 1) * bucketSize;
-    const count = durations.filter((d) => d >= lo && d < hi).length;
+    const isLast = i === bucketCount - 1;
+    const matchesBucket = (d: number) => isLast ? (d >= lo && d <= hi) : (d >= lo && d < hi);
+    const count = durations.filter(matchesBucket).length;
     buckets.push({ label: `${lo}-${hi}ms`, count });
   }
   return buckets;
