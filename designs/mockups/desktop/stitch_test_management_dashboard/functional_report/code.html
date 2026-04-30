@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Functional Test Report</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=Manrope:wght@500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-dim": "#d9d9e5",
+                      "inverse-on-surface": "#f0f0fb",
+                      "on-primary-fixed-variant": "#003ea8",
+                      "on-tertiary-fixed-variant": "#7d2d00",
+                      "on-tertiary-fixed": "#360f00",
+                      "surface-variant": "#e1e2ed",
+                      "surface-container-highest": "#e1e2ed",
+                      "primary-fixed": "#dbe1ff",
+                      "tertiary": "#943700",
+                      "surface-container-lowest": "#ffffff",
+                      "tertiary-fixed": "#ffdbcd",
+                      "on-secondary-fixed": "#0b1c30",
+                      "inverse-primary": "#b4c5ff",
+                      "on-secondary": "#ffffff",
+                      "error": "#ba1a1a",
+                      "surface-tint": "#0053db",
+                      "on-error-container": "#93000a",
+                      "tertiary-fixed-dim": "#ffb596",
+                      "surface-container-low": "#f3f3fe",
+                      "surface": "#faf8ff",
+                      "outline": "#737686",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary-container": "#54647a",
+                      "background": "#faf8ff",
+                      "on-tertiary-container": "#ffede6",
+                      "on-primary": "#ffffff",
+                      "secondary-container": "#d0e1fb",
+                      "on-primary-fixed": "#00174b",
+                      "on-surface": "#191b23",
+                      "primary-fixed-dim": "#b4c5ff",
+                      "secondary-fixed-dim": "#b7c8e1",
+                      "on-surface-variant": "#434655",
+                      "surface-container": "#ededf9",
+                      "inverse-surface": "#2e3039",
+                      "error-container": "#ffdad6",
+                      "surface-container-high": "#e7e7f3",
+                      "surface-bright": "#faf8ff",
+                      "on-background": "#191b23",
+                      "secondary-fixed": "#d3e4fe",
+                      "primary-container": "#2563eb",
+                      "on-secondary-fixed-variant": "#38485d",
+                      "outline-variant": "#c3c6d7",
+                      "secondary": "#505f76",
+                      "primary": "#004ac6",
+                      "on-primary-container": "#eeefff",
+                      "on-error": "#ffffff",
+                      "tertiary-container": "#bc4800"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "lg": "1.5rem",
+                      "gutter": "1.5rem",
+                      "xl": "2.5rem",
+                      "container-max": "1440px",
+                      "xs": "0.25rem",
+                      "md": "1rem",
+                      "sm": "0.5rem",
+                      "base": "4px"
+              },
+              "fontFamily": {
+                      "headline-md": [
+                              "Manrope"
+                      ],
+                      "display-lg": [
+                              "Manrope"
+                      ],
+                      "data-tabular": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "36px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "data-tabular": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+      </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md text-body-md antialiased overflow-hidden flex h-screen">
+<!-- SideNavBar (Shared Component) -->
+<nav class="bg-slate-50 dark:bg-slate-950 font-manrope text-sm antialiased h-screen w-64 border-r border-r border-slate-200 dark:border-slate-800 shadow-none fixed left-0 top-0 flex flex-col z-40">
+<!-- Header -->
+<div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary-container text-on-primary-container flex items-center justify-center font-bold">PA</div>
+<div>
+<div class="text-base font-black text-slate-900 dark:text-slate-100">Project Alpha</div>
+<div class="text-xs text-slate-500">V2.4.0-Stable</div>
+</div>
+</div>
+<!-- Main Tabs -->
+<div class="flex-1 py-4 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 scale-[0.98] transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 font-semibold border-r-4 border-blue-600 scale-[0.98] transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+                Test Runs
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 scale-[0.98] transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">folder_copy</span>
+                Suites
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 scale-[0.98] transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">analytics</span>
+                Analytics
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 scale-[0.98] transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+                Inventory
+            </a>
+</div>
+<!-- Footer Tabs -->
+<div class="p-4 border-t border-slate-200 dark:border-slate-800 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 scale-[0.98] transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">help</span>
+                Help Center
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 scale-[0.98] transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">description</span>
+                Documentation
+            </a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="ml-64 flex-1 flex flex-col h-full overflow-y-auto">
+<!-- TopAppBar (Shared Component) -->
+<header class="bg-white dark:bg-slate-900 font-manrope text-sm font-medium w-full top-0 border-b border-b border-slate-200 dark:border-slate-800 shadow-sm sticky top-0 z-50 flex items-center justify-between px-6 h-16 w-full">
+<div class="flex items-center gap-4">
+<div class="text-lg font-bold tracking-tight text-slate-900 dark:text-slate-50">TestReporter</div>
+</div>
+<div class="flex items-center gap-6">
+<!-- Search on right -->
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[18px]">search</span>
+<input class="pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-full text-sm focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-colors w-64" placeholder="Search reports..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors rounded-full active:opacity-80 transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors rounded-full active:opacity-80 transition-all">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="h-8 w-8 rounded-full bg-surface-dim overflow-hidden ml-2 border border-slate-200">
+<img alt="Lead QA Engineer Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a Lead QA Engineer, set against a clean, minimalist studio background with soft white lighting. The image embodies a modern, corporate tech aesthetic, utilizing subtle cool tones to complement the overall UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDW04-MJUFXx5OKX36mffncrgEw9ZCyBkn4HaRz24aH0lX2C2MPYRlVchd8dseYv4RmtzpMaTYmyZOtdeWRUtbK1FmagKV-Xn3srIUU860POl9gwEvQsjekF_PCmdtjcQXgZ8QCO4vqn6dqI1z4ryjleVGoyJOdPAkwp9KwNXjr4UwvSLqDLvvb1e11yh_3KBWCZVD2GEVl5nRQtSvgjKTNE4k1Q28ManSuWrfBZO7d_u1VYhshVdokeFnacqwhxcz_hjOKhpCEMVU"/>
+</div>
+</div>
+</header>
+<!-- Dashboard Content -->
+<div class="p-xl space-y-xl max-w-container-max mx-auto w-full">
+<!-- Page Header -->
+<div>
+<h1 class="font-display-lg text-display-lg text-on-surface">Functional Test Report</h1>
+<p class="text-on-surface-variant mt-2">Run ID: #8842-Alpha • Completed 10 minutes ago</p>
+</div>
+<!-- Top: Histogram Chart Area -->
+<div class="bg-surface-container-lowest rounded-xl p-lg shadow-[0_4px_6px_rgba(0,0,0,0.05)] border border-surface-variant flex flex-col gap-md">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-md text-headline-md text-on-surface">Execution Duration Distribution</h2>
+<span class="material-symbols-outlined text-outline">more_vert</span>
+</div>
+<div class="h-48 w-full flex items-end gap-1 mt-4 px-2">
+<!-- Mock Histogram Bars -->
+<div class="w-full bg-secondary-container rounded-t-sm h-[10%] hover:bg-primary-container transition-colors cursor-pointer group relative"></div>
+<div class="w-full bg-secondary-container rounded-t-sm h-[25%] hover:bg-primary-container transition-colors cursor-pointer"></div>
+<div class="w-full bg-primary-container rounded-t-sm h-[60%] hover:bg-primary transition-colors cursor-pointer"></div>
+<div class="w-full bg-secondary-container rounded-t-sm h-[80%] hover:bg-primary-container transition-colors cursor-pointer"></div>
+<div class="w-full bg-secondary-container rounded-t-sm h-[100%] hover:bg-primary-container transition-colors cursor-pointer"></div>
+<div class="w-full bg-secondary-container rounded-t-sm h-[40%] hover:bg-primary-container transition-colors cursor-pointer"></div>
+<div class="w-full bg-secondary-container rounded-t-sm h-[15%] hover:bg-primary-container transition-colors cursor-pointer"></div>
+<div class="w-full bg-secondary-container rounded-t-sm h-[5%] hover:bg-primary-container transition-colors cursor-pointer"></div>
+</div>
+<div class="flex justify-between text-xs text-on-surface-variant border-t border-surface-variant pt-2">
+<span>0ms</span>
+<span>1500ms</span>
+<span>3000ms+</span>
+</div>
+</div>
+<!-- Middle: Filter Bar -->
+<div class="flex items-center gap-md">
+<div class="flex flex-col gap-1">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Status</label>
+<select class="h-10 px-3 border border-outline-variant rounded-DEFAULT bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none">
+<option>All Statuses</option>
+<option>Passed</option>
+<option>Failed</option>
+<option>Errored</option>
+</select>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Browser</label>
+<select class="h-10 px-3 border border-outline-variant rounded-DEFAULT bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none">
+<option>All Browsers</option>
+<option>Chrome</option>
+<option>Firefox</option>
+<option>Safari</option>
+</select>
+</div>
+<div class="flex-1"></div>
+<button class="h-10 px-4 bg-primary text-on-primary rounded-DEFAULT font-data-tabular text-data-tabular hover:bg-on-primary-fixed-variant transition-colors flex items-center gap-2 self-end">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                    Export CSV
+                </button>
+</div>
+<!-- Bottom: Detailed Results Table -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_6px_rgba(0,0,0,0.05)] border border-surface-variant overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-surface-variant bg-surface">
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider w-8"></th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Test Name</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Duration</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Browser</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Error Message</th>
+</tr>
+</thead>
+<tbody class="font-data-tabular text-data-tabular text-on-surface divide-y divide-surface-variant">
+<!-- Standard Row -->
+<tr class="hover:bg-surface-dim transition-colors group h-[48px]">
+<td class="px-4 text-outline group-hover:text-on-surface cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</td>
+<td class="px-4 font-medium">Authentication Flow - Valid Login</td>
+<td class="px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                    Passed
+                                </span>
+</td>
+<td class="px-4">1,240 ms</td>
+<td class="px-4 flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">language</span> Chrome
+                            </td>
+<td class="px-4 text-outline">-</td>
+</tr>
+<!-- Expanded Row State -->
+<tr class="bg-surface-container h-[48px] border-l-4 border-l-error">
+<td class="px-4 text-on-surface cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">expand_more</span>
+</td>
+<td class="px-4 font-medium">Checkout - Credit Card Validation</td>
+<td class="px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-error-container text-on-error-container text-xs font-bold">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">cancel</span>
+                                    Failed
+                                </span>
+</td>
+<td class="px-4">4,102 ms</td>
+<td class="px-4 flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">language</span> Firefox
+                            </td>
+<td class="px-4 text-error truncate max-w-[200px]" title="Timeout waiting for element selector: #cc-input">Timeout waiting for element...</td>
+</tr>
+<!-- Nested Expand Content -->
+<tr class="bg-surface-container border-b border-surface-variant">
+<td class="p-0" colspan="6">
+<div class="px-12 py-4 space-y-2">
+<div class="text-xs font-label-caps text-label-caps text-on-surface-variant uppercase mb-2">Execution Steps</div>
+<div class="flex items-center justify-between py-2 border-b border-outline-variant/30 text-sm">
+<div class="flex gap-4 w-1/2">
+<span class="text-outline">1</span>
+<span>Navigate to /checkout</span>
+</div>
+<span class="text-emerald-600">Passed</span>
+<span class="text-outline">450ms</span>
+</div>
+<div class="flex items-center justify-between py-2 border-b border-outline-variant/30 text-sm">
+<div class="flex gap-4 w-1/2">
+<span class="text-outline">2</span>
+<span>Click "Add Payment Method"</span>
+</div>
+<span class="text-emerald-600">Passed</span>
+<span class="text-outline">120ms</span>
+</div>
+<div class="flex items-center justify-between py-2 bg-error-container/20 text-sm rounded px-2 -mx-2">
+<div class="flex gap-4 w-1/2">
+<span class="text-outline">3</span>
+<span>Wait for selector #cc-input</span>
+</div>
+<span class="text-error font-medium">Failed</span>
+<span class="text-outline">3500ms</span>
+</div>
+</div>
+</td>
+</tr>
+<!-- Standard Row -->
+<tr class="hover:bg-surface-dim transition-colors group h-[48px]">
+<td class="px-4 text-outline group-hover:text-on-surface cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</td>
+<td class="px-4 font-medium">Profile - Upload Avatar</td>
+<td class="px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                    Passed
+                                </span>
+</td>
+<td class="px-4">850 ms</td>
+<td class="px-4 flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">language</span> Safari
+                            </td>
+<td class="px-4 text-outline">-</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+</body></html>

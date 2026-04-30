@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Session Detail - TestOps Pro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#f0f0fb",
+                        "inverse-primary": "#b4c5ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#ffede6",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#d3e4fe",
+                        "primary-container": "#2563eb",
+                        "primary": "#004ac6",
+                        "surface-container-low": "#f3f3fe",
+                        "primary-fixed": "#dbe1ff",
+                        "tertiary-fixed": "#ffdbcd",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#434655",
+                        "on-secondary-fixed": "#0b1c30",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "inverse-surface": "#2e3039",
+                        "on-error": "#ffffff",
+                        "background": "#faf8ff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "tertiary": "#943700",
+                        "secondary": "#505f76",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-container-highest": "#e1e2ed",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#e1e2ed",
+                        "on-secondary-container": "#54647a",
+                        "tertiary-container": "#bc4800",
+                        "outline": "#737686",
+                        "secondary-container": "#d0e1fb",
+                        "surface-bright": "#faf8ff",
+                        "outline-variant": "#c3c6d7",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#191b23",
+                        "surface-dim": "#d9d9e5",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed": "#360f00",
+                        "error": "#ba1a1a",
+                        "surface": "#faf8ff",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "surface-tint": "#0053db",
+                        "on-surface": "#191b23",
+                        "on-primary-fixed": "#00174b",
+                        "surface-container": "#ededf9",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-primary-container": "#eeefff",
+                        "surface-container-high": "#e7e7f3",
+                        "success-container": "#d1fae5",
+                        "on-success-container": "#065f46",
+                        "warning-container": "#fef3c7",
+                        "on-warning-container": "#92400e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-max": "1440px",
+                        "gutter": "1.5rem",
+                        "lg": "1.5rem",
+                        "base": "4px",
+                        "xl": "2.5rem",
+                        "xs": "0.25rem",
+                        "sm": "0.5rem",
+                        "md": "1rem"
+                    },
+                    "fontFamily": {
+                        "data-tabular": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Manrope"],
+                        "label-caps": ["Inter"],
+                        "display-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "data-tabular": ["14px", { "lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "display-lg": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md flex h-screen overflow-hidden">
+<!-- SideNavBar -->
+<nav class="h-screen w-64 border-r fixed left-0 top-0 border-r border-slate-200 bg-slate-50 flex flex-col h-full py-6 z-40 hidden md:flex">
+<div class="px-6 mb-8 flex items-center gap-3">
+<img alt="Project Logo" class="w-8 h-8 rounded-DEFAULT object-cover" data-alt="A clean, abstract geometric logo representing enterprise technology, featuring sharp lines and a subtle gradient in a minimalist corporate style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6oWi_PjJdDtF-k3g_llpoXcoGZgW-lU3cf5e0AIOuCsRtOVtXdBy2KZpJUJx8IEDf8yl5YF-gsomqOzjUjolLXWQLZyiwyoxRgJUkrfd2xsTwAAgxSCmEynmeaz4_H_pMWVEybd7urarWiENIfKZ3a7IjAC6qRhVbDQGXw-s6P04EaGll9vjqjSPGJQ86pA5VL7YegwoIC8XuDtIiUYZ-B6M6vwrc0FUfOmdQPIoRf1WILZKI03uMAbSa0tmaR8miQqnw5tRq4E0"/>
+<div>
+<h2 class="font-bold text-slate-900 font-headline-md text-[18px]">Project Workspace</h2>
+<p class="font-body-md text-[12px] text-on-surface-variant">Enterprise QA Cluster</p>
+</div>
+</div>
+<div class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-900 transition-colors duration-200 ease-in-out font-manrope text-sm leading-6" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-blue-600 bg-blue-50 font-semibold border-r-2 border-blue-600 transition-colors duration-200 ease-in-out font-manrope text-sm leading-6" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+<span>Sessions</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-900 transition-colors duration-200 ease-in-out font-manrope text-sm leading-6" href="#">
+<span class="material-symbols-outlined text-[20px]">inventory_2</span>
+<span>Test Repository</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-900 transition-colors duration-200 ease-in-out font-manrope text-sm leading-6" href="#">
+<span class="material-symbols-outlined text-[20px]">lan</span>
+<span>Infrastructure</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-900 transition-colors duration-200 ease-in-out font-manrope text-sm leading-6" href="#">
+<span class="material-symbols-outlined text-[20px]">query_stats</span>
+<span>Analytics</span>
+</a>
+</div>
+<div class="px-4 mt-auto space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-900 transition-colors duration-200 ease-in-out font-manrope text-sm leading-6" href="#">
+<span class="material-symbols-outlined text-[20px]">contact_support</span>
+<span>Support</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-900 transition-colors duration-200 ease-in-out font-manrope text-sm leading-6" href="#">
+<span class="material-symbols-outlined text-[20px]">terminal</span>
+<span>Logs</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col md:ml-64 w-full h-full">
+<!-- TopAppBar -->
+<header class="bg-white border-b border-slate-200 shadow-sm docked full-width top-0 z-50 flex justify-between items-center px-6 py-2 w-full">
+<div class="flex items-center gap-4">
+<div class="md:hidden">
+<span class="material-symbols-outlined cursor-pointer hover:text-blue-600 transition-all duration-200 active:scale-95 text-slate-500 font-medium">menu</span>
+</div>
+<h1 class="text-lg font-extrabold text-blue-600 font-manrope antialiased tracking-tight">TestOps Pro</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[18px]">search</span>
+<input class="pl-9 pr-4 py-1.5 border border-slate-200 rounded-DEFAULT bg-surface-container-lowest text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary w-64 font-data-tabular text-data-tabular" placeholder="Search sessions..." type="text"/>
+</div>
+<button class="p-1.5 rounded-full hover:bg-slate-50 hover:text-blue-600 transition-all duration-200 active:scale-95 text-slate-500 font-medium">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-1.5 rounded-full hover:bg-slate-50 hover:text-blue-600 transition-all duration-200 active:scale-95 text-slate-500 font-medium">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="p-1.5 rounded-full hover:bg-slate-50 hover:text-blue-600 transition-all duration-200 active:scale-95 text-slate-500 font-medium">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-slate-200 ml-2">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of an individual in a corporate setting, well-lit with a neutral background, suitable for an enterprise software avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmXkfHhmZMW1bw2fXGSeUwFX_Hrd_TR4ilYxMpjk0Hwvc8sDTcutaydMRf-u5WjDYwegK_1Fi1JTh_IMAYAKXQ8hFyR2oXrf9_YPq0s8UH03KcRNMkJ1rUKQqpenL4Wm7EsiFjDN1GacSbj5pJTi17E02pW0JC5hNv0FobNd49VGQP6Gk3iZsNJbNYPfGc75gXj6wJxSZGcM_u1inGNbrNu4DVKQGx-E6lCh6-WglRFnkmvK_YCLpzMPp3sT8P7NubXXn-Zn8GRwY"/>
+</div>
+</div>
+</header>
+<!-- Canvas -->
+<main class="flex-1 overflow-y-auto p-gutter bg-background">
+<div class="max-w-[container-max] mx-auto space-y-xl">
+<!-- Page Header & Action Bar -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-label-caps text-label-caps text-secondary uppercase tracking-widest">Session #8924</span>
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-caps text-[10px]">IN PROGRESS</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Nightly Master Execution</h2>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-4 py-2 bg-surface-container-lowest border border-outline-variant text-on-surface rounded-DEFAULT hover:bg-surface-dim transition-colors font-data-tabular text-data-tabular flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+                            View Full Logs
+                        </button>
+<button class="px-4 py-2 bg-surface-container-lowest border border-outline-variant text-on-surface rounded-DEFAULT hover:bg-surface-dim transition-colors font-data-tabular text-data-tabular flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">replay</span>
+                            Re-run Phase
+                        </button>
+<button class="px-4 py-2 bg-primary text-on-primary rounded-DEFAULT hover:bg-surface-tint shadow-sm transition-colors font-data-tabular text-data-tabular flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+                            Approve Current Phase
+                        </button>
+</div>
+</div>
+<!-- Progress Bar Stepper -->
+<div class="bg-surface-container-lowest rounded-xl p-lg shadow-[0_4px_6px_rgba(0,0,0,0.05)] border border-surface-variant">
+<div class="flex items-center justify-between relative">
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-1 bg-surface-variant z-0"></div>
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-[40%] h-1 bg-success-container z-0"></div>
+<!-- Step 1: Ingestion -->
+<div class="relative z-10 flex flex-col items-center gap-2 bg-surface-container-lowest px-2">
+<div class="w-8 h-8 rounded-full bg-success-container text-on-success-container flex items-center justify-center border-2 border-surface-container-lowest">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-label-caps text-[10px] text-secondary">INGESTION</span>
+</div>
+<!-- Step 2: Generation -->
+<div class="relative z-10 flex flex-col items-center gap-2 bg-surface-container-lowest px-2">
+<div class="w-8 h-8 rounded-full bg-success-container text-on-success-container flex items-center justify-center border-2 border-surface-container-lowest">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-label-caps text-[10px] text-secondary">GENERATION</span>
+</div>
+<!-- Step 3: Functional (Current) -->
+<div class="relative z-10 flex flex-col items-center gap-2 bg-surface-container-lowest px-2">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center border-4 border-primary-fixed shadow-sm">
+<span class="material-symbols-outlined text-[16px]">sync</span>
+</div>
+<span class="font-label-caps text-[10px] text-primary">FUNCTIONAL</span>
+</div>
+<!-- Step 4: Performance -->
+<div class="relative z-10 flex flex-col items-center gap-2 bg-surface-container-lowest px-2">
+<div class="w-8 h-8 rounded-full bg-surface-container text-outline flex items-center justify-center border-2 border-surface-container-lowest">
+<span class="material-symbols-outlined text-[16px]">speed</span>
+</div>
+<span class="font-label-caps text-[10px] text-outline">PERFORMANCE</span>
+</div>
+<!-- Step 5: Security -->
+<div class="relative z-10 flex flex-col items-center gap-2 bg-surface-container-lowest px-2">
+<div class="w-8 h-8 rounded-full bg-surface-container text-outline flex items-center justify-center border-2 border-surface-container-lowest">
+<span class="material-symbols-outlined text-[16px]">security</span>
+</div>
+<span class="font-label-caps text-[10px] text-outline">SECURITY</span>
+</div>
+<!-- Step 6: Complete -->
+<div class="relative z-10 flex flex-col items-center gap-2 bg-surface-container-lowest px-2">
+<div class="w-8 h-8 rounded-full bg-surface-container text-outline flex items-center justify-center border-2 border-surface-container-lowest">
+<span class="material-symbols-outlined text-[16px]">flag</span>
+</div>
+<span class="font-label-caps text-[10px] text-outline">COMPLETE</span>
+</div>
+</div>
+</div>
+<!-- Bento Grid Content -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+<!-- Test Count Cards -->
+<div class="lg:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-lg">
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-[0_4px_6px_rgba(0,0,0,0.05)] border border-surface-variant flex items-start gap-4 relative overflow-hidden">
+<div class="w-12 h-12 rounded-lg bg-primary-fixed flex items-center justify-center text-primary z-10">
+<span class="material-symbols-outlined text-[24px]">fact_check</span>
+</div>
+<div class="z-10">
+<h3 class="font-label-caps text-label-caps text-secondary mb-1">Functional Tests</h3>
+<p class="font-headline-md text-[32px] leading-tight text-on-surface">142</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-[0_4px_6px_rgba(0,0,0,0.05)] border border-surface-variant flex items-start gap-4 relative overflow-hidden">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-outline z-10">
+<span class="material-symbols-outlined text-[24px]">speed</span>
+</div>
+<div class="z-10">
+<h3 class="font-label-caps text-label-caps text-secondary mb-1">Performance Tests</h3>
+<p class="font-headline-md text-[32px] leading-tight text-on-surface">24</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-[0_4px_6px_rgba(0,0,0,0.05)] border border-surface-variant flex items-start gap-4 relative overflow-hidden">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-outline z-10">
+<span class="material-symbols-outlined text-[24px]">security</span>
+</div>
+<div class="z-10">
+<h3 class="font-label-caps text-label-caps text-secondary mb-1">Security Tests</h3>
+<p class="font-headline-md text-[32px] leading-tight text-on-surface">18</p>
+</div>
+</div>
+</div>
+<!-- Execution Summary -->
+<div class="lg:col-span-2 bg-surface-container-lowest rounded-xl p-lg shadow-[0_4px_6px_rgba(0,0,0,0.05)] border border-surface-variant">
+<div class="flex justify-between items-center mb-md border-b border-surface-variant pb-2">
+<h3 class="font-headline-md text-[18px] text-on-surface">Execution Summary</h3>
+<button class="text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div class="flex flex-col md:flex-row gap-8 items-center h-48">
+<!-- Donut Chart Placeholder -->
+<div class="relative w-32 h-32 flex-shrink-0">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<circle cx="18" cy="18" fill="transparent" r="15.91549430918954" stroke="#e1e2ed" stroke-width="4"></circle>
+<circle cx="18" cy="18" fill="transparent" r="15.91549430918954" stroke="#10b981" stroke-dasharray="84 16" stroke-dashoffset="0" stroke-width="4"></circle>
+<circle cx="18" cy="18" fill="transparent" r="15.91549430918954" stroke="#ef4444" stroke-dasharray="8 92" stroke-dashoffset="-84" stroke-width="4"></circle>
+<circle cx="18" cy="18" fill="transparent" r="15.91549430918954" stroke="#f59e0b" stroke-dasharray="3 97" stroke-dashoffset="-92" stroke-width="4"></circle>
+<circle cx="18" cy="18" fill="transparent" r="15.91549430918954" stroke="#94a3b8" stroke-dasharray="4 96" stroke-dashoffset="-95" stroke-width="4"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center flex-col">
+<span class="font-headline-md text-[20px] leading-none">142</span>
+<span class="font-label-caps text-[8px] text-secondary">TOTAL</span>
+</div>
+</div>
+<!-- Legend / Details -->
+<div class="flex-1 w-full grid grid-cols-2 gap-4">
+<div class="flex items-center gap-3">
+<div class="w-2 h-8 bg-emerald-500 rounded-sm"></div>
+<div>
+<div class="font-label-caps text-label-caps text-secondary mb-1">Passed</div>
+<div class="font-data-tabular text-data-tabular text-on-surface">120 <span class="text-secondary text-[12px]">(84%)</span></div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-2 h-8 bg-red-500 rounded-sm"></div>
+<div>
+<div class="font-label-caps text-label-caps text-secondary mb-1">Failed</div>
+<div class="font-data-tabular text-data-tabular text-on-surface">12 <span class="text-secondary text-[12px]">(8%)</span></div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-2 h-8 bg-amber-500 rounded-sm"></div>
+<div>
+<div class="font-label-caps text-label-caps text-secondary mb-1">Errored</div>
+<div class="font-data-tabular text-data-tabular text-on-surface">4 <span class="text-secondary text-[12px]">(3%)</span></div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-2 h-8 bg-slate-400 rounded-sm"></div>
+<div>
+<div class="font-label-caps text-label-caps text-secondary mb-1">Skipped</div>
+<div class="font-data-tabular text-data-tabular text-on-surface">6 <span class="text-secondary text-[12px]">(4%)</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Approval Gates -->
+<div class="bg-surface-container-lowest rounded-xl p-lg shadow-[0_4px_6px_rgba(0,0,0,0.05)] border border-surface-variant flex flex-col">
+<div class="flex justify-between items-center mb-md border-b border-surface-variant pb-2">
+<h3 class="font-headline-md text-[18px] text-on-surface">Approval Gates</h3>
+<button class="text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div class="flex-1 space-y-4 overflow-y-auto pr-2">
+<div class="flex items-center justify-between p-3 rounded-lg border border-surface-variant bg-surface-bright">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-success-container text-on-success-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<span class="font-data-tabular text-data-tabular text-on-surface">SLA Compliance Check</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-success-container text-on-success-container font-label-caps text-[10px]">Passed</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg border border-surface-variant bg-surface-bright opacity-70">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant text-outline flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+</div>
+<span class="font-data-tabular text-data-tabular text-on-surface">Security Threshold</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-variant text-outline font-label-caps text-[10px]">Pending</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg border border-surface-variant bg-surface-bright opacity-70">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant text-outline flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+</div>
+<span class="font-data-tabular text-data-tabular text-on-surface">QA Manager Review</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-variant text-outline font-label-caps text-[10px]">Pending</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

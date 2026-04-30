@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>New Session - DevInstrument</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;900&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#e1e2ed",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#d9d9e5",
+                        "secondary-container": "#d0e1fb",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "outline-variant": "#c3c6d7",
+                        "outline": "#737686",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "secondary": "#505f76",
+                        "inverse-primary": "#b4c5ff",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "on-primary-container": "#eeefff",
+                        "surface-container-low": "#f3f3fe",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#d3e4fe",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#e1e2ed",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "primary": "#004ac6",
+                        "on-primary-fixed": "#00174b",
+                        "on-background": "#191b23",
+                        "surface-container-high": "#e7e7f3",
+                        "tertiary": "#943700",
+                        "surface": "#faf8ff",
+                        "on-surface": "#191b23",
+                        "background": "#faf8ff",
+                        "on-tertiary-fixed": "#360f00",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "surface-tint": "#0053db",
+                        "surface-container": "#ededf9",
+                        "on-surface-variant": "#434655",
+                        "primary-fixed": "#dbe1ff",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#2e3039",
+                        "inverse-on-surface": "#f0f0fb",
+                        "tertiary-container": "#bc4800",
+                        "primary-container": "#2563eb",
+                        "on-secondary-container": "#54647a",
+                        "surface-bright": "#faf8ff",
+                        "on-secondary-fixed": "#0b1c30",
+                        "tertiary-fixed": "#ffdbcd",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "on-tertiary-container": "#ffede6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "md": "1rem",
+                        "lg": "1.5rem",
+                        "xs": "0.25rem",
+                        "xl": "2.5rem",
+                        "sm": "0.5rem",
+                        "container-max": "1440px",
+                        "gutter": "1.5rem"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Manrope"],
+                        "data-tabular": ["Inter"],
+                        "display-lg": ["Manrope"],
+                        "body-md": ["Inter"],
+                        "label-caps": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "data-tabular": ["14px", { "lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "500" }],
+                        "display-lg": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary ~ * {
+            animation: sweep .2s ease-in-out;
+        }
+        @keyframes sweep {
+            0%    {opacity: 0; transform: translateY(-10px)}
+            100%  {opacity: 1; transform: translateY(0)}
+        }
+        details[open] summary .chevron {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-white dark:bg-slate-900 font-manrope text-sm font-medium tracking-tight fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 docked full-width top-0 border-b border-b border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center gap-4">
+<span class="text-xl font-bold tracking-tighter text-slate-900 dark:text-white">DevInstrument</span>
+</div>
+<div class="flex items-center gap-4">
+<button aria-label="notifications" class="p-2 rounded-full text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors active:opacity-80 transition-all duration-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button aria-label="settings" class="p-2 rounded-full text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors active:opacity-80 transition-all duration-200">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button aria-label="help" class="p-2 rounded-full text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors active:opacity-80 transition-all duration-200">
+<span class="material-symbols-outlined">help</span>
+</button>
+<img alt="User profile" class="h-8 w-8 rounded-full border border-outline-variant" data-alt="A close-up portrait of a professional engineer wearing modern glasses, brightly lit in a minimal corporate environment. The image uses a high-key lighting setup to emphasize a clean, technical aesthetic. Background is out of focus, predominantly white and light slate. Colors are muted with a focus on skin tones and sharp focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIKqLtFIffkV_J-Fu5h-r0u48WYjgSXmGFfoyi-JtSYrdO8uiMwda_WLwnQ0MBNtI5BKRWKQapIBMrtu2KI6DFusuqrPCAhB1G1guTVuqZI-0hlZQsgyXYD4jUWW1Uz-otsSZQorjvrjSmXVpAuMuIcTAiaqV0FNz7hlo9g2mRJKqADB_tBI3Yi0qigVSPUnYfn3XOJxsza0RlqTHWnQdjGpKHLfb5XnyOGSCcmg6qRQYXUY3Ms2RNZJOLUV94fPuP5JqKl6oVS1M"/>
+</div>
+</header>
+<!-- SideNavBar -->
+<nav class="hidden md:flex bg-slate-50 dark:bg-slate-950 font-manrope text-xs font-semibold uppercase tracking-wider docked h-screen w-64 border-r border-r border-slate-200 dark:border-slate-800 flat no-shadow fixed left-0 top-16 h-[calc(100vh-64px)] w-64 flex flex-col py-4 z-40">
+<div class="px-6 mb-6 mt-2">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded bg-primary/10 flex items-center justify-center text-primary font-bold">QA</div>
+<div>
+<div class="text-sm font-bold text-slate-900 dark:text-white capitalize">QA Workspace</div>
+<div class="text-[10px] text-slate-500 capitalize">Standard Environment</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-1 px-2 flex-grow">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 scale-95 duration-150 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-blue-600 dark:text-blue-400 bg-blue-50/50 dark:bg-blue-900/20 border-r-4 border-blue-600 scale-95 duration-150 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+                Sessions
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 scale-95 duration-150 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined">speed</span>
+                Performance
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 scale-95 duration-150 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined">security</span>
+                Security
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 scale-95 duration-150 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined">terminal</span>
+                Logs
+            </a>
+</div>
+<div class="px-4 mt-auto">
+<button class="w-full py-2 bg-primary text-on-primary rounded-lg font-data-tabular text-data-tabular hover:bg-surface-tint transition-colors shadow-sm">
+                New Session
+            </button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="md:ml-64 pt-16 min-h-screen pb-xl">
+<div class="max-w-4xl mx-auto p-lg lg:p-xl">
+<div class="mb-lg flex items-center justify-between">
+<div>
+<h1 class="font-headline-md text-headline-md text-on-background">Create New Session</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Configure parameters for your automated test execution.</p>
+</div>
+</div>
+<form class="space-y-lg">
+<!-- Basic Info Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0px_4px_6px_rgba(0,0,0,0.02)] border border-surface-container-highest p-lg">
+<h2 class="font-data-tabular text-data-tabular font-bold text-on-surface mb-md pb-sm border-b border-surface-container-highest">Basic Information</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="flex flex-col gap-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase" for="targetUrl">Target URL <span class="text-error">*</span></label>
+<input class="px-md py-2 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors bg-surface-bright" id="targetUrl" placeholder="https://example.com" required="" type="url"/>
+</div>
+<div class="flex flex-col gap-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase" for="sessionName">Session Name</label>
+<input class="px-md py-2 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors bg-surface-bright" id="sessionName" placeholder="e.g., Nightly Regression Alpha" type="text"/>
+</div>
+</div>
+</div>
+<!-- Browser Selection Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0px_4px_6px_rgba(0,0,0,0.02)] border border-surface-container-highest p-lg">
+<h2 class="font-data-tabular text-data-tabular font-bold text-on-surface mb-md pb-sm border-b border-surface-container-highest">Browser Targets</h2>
+<div class="flex flex-wrap gap-md">
+<label class="flex items-center gap-sm cursor-pointer p-sm rounded-lg border border-outline-variant hover:border-primary/50 transition-colors bg-surface">
+<input checked="" class="rounded text-primary focus:ring-primary border-outline-variant" type="checkbox"/>
+<span class="font-data-tabular text-data-tabular text-on-surface">Chromium</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer p-sm rounded-lg border border-outline-variant hover:border-primary/50 transition-colors bg-surface">
+<input checked="" class="rounded text-primary focus:ring-primary border-outline-variant" type="checkbox"/>
+<span class="font-data-tabular text-data-tabular text-on-surface">Firefox</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer p-sm rounded-lg border border-outline-variant hover:border-primary/50 transition-colors bg-surface">
+<input class="rounded text-primary focus:ring-primary border-outline-variant" type="checkbox"/>
+<span class="font-data-tabular text-data-tabular text-on-surface">Webkit</span>
+</label>
+</div>
+</div>
+<!-- Performance Configuration Accordion -->
+<details class="bg-surface-container-lowest rounded-xl shadow-[0px_4px_6px_rgba(0,0,0,0.02)] border border-surface-container-highest group">
+<summary class="p-lg cursor-pointer flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset rounded-xl">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary">speed</span>
+<h2 class="font-data-tabular text-data-tabular font-bold text-on-surface">Performance Configuration</h2>
+</div>
+<span class="material-symbols-outlined chevron transition-transform duration-200 text-outline">expand_more</span>
+</summary>
+<div class="p-lg pt-0 border-t border-surface-container-highest mt-2">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md pt-md">
+<div class="flex flex-col gap-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase" for="virtualUsers">Virtual Users</label>
+<input class="px-md py-2 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors bg-surface-bright" id="virtualUsers" min="1" type="number" value="50"/>
+</div>
+<div class="flex flex-col gap-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase" for="rampUp">Ramp-up Time (s)</label>
+<input class="px-md py-2 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors bg-surface-bright" id="rampUp" min="0" type="number" value="30"/>
+</div>
+<div class="flex flex-col gap-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase" for="duration">Duration (m)</label>
+<input class="px-md py-2 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors bg-surface-bright" id="duration" min="1" type="number" value="5"/>
+</div>
+<div class="flex flex-col gap-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase" for="slaThreshold">SLA P95 (ms)</label>
+<input class="px-md py-2 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors bg-surface-bright" id="slaThreshold" min="10" type="number" value="500"/>
+</div>
+</div>
+</div>
+</details>
+<!-- Security Configuration Accordion -->
+<details class="bg-surface-container-lowest rounded-xl shadow-[0px_4px_6px_rgba(0,0,0,0.02)] border border-surface-container-highest group">
+<summary class="p-lg cursor-pointer flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset rounded-xl">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary">security</span>
+<h2 class="font-data-tabular text-data-tabular font-bold text-on-surface">Security Configuration</h2>
+</div>
+<span class="material-symbols-outlined chevron transition-transform duration-200 text-outline">expand_more</span>
+</summary>
+<div class="p-lg pt-0 border-t border-surface-container-highest mt-2">
+<div class="grid grid-cols-1 gap-md pt-md">
+<div class="flex flex-col gap-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase" for="zapPath">Context/ZAP Path</label>
+<input class="px-md py-2 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors bg-surface-bright" id="zapPath" placeholder="/api/v1/.*" type="text"/>
+</div>
+<div class="flex items-center justify-between p-md border border-surface-container-highest rounded-lg bg-surface">
+<div>
+<div class="font-data-tabular text-data-tabular font-bold text-on-surface">Passive Scan</div>
+<div class="font-body-md text-body-md text-on-surface-variant text-sm">Analyze traffic without altering requests.</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary/50 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-outline-variant after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between p-md border border-surface-container-highest rounded-lg bg-surface">
+<div>
+<div class="font-data-tabular text-data-tabular font-bold text-on-surface">Active Scan</div>
+<div class="font-body-md text-body-md text-on-surface-variant text-sm">Inject payloads to find vulnerabilities.</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary/50 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-outline-variant after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex flex-col gap-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase" for="severity">Fail Severity Threshold</label>
+<select class="px-md py-2 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors bg-surface-bright appearance-none" id="severity">
+<option>Low</option>
+<option>Medium</option>
+<option selected="">High</option>
+<option>Critical</option>
+</select>
+</div>
+</div>
+</div>
+</details>
+<!-- Actions -->
+<div class="flex justify-end gap-md pt-lg border-t border-surface-container-highest mt-xl">
+<button class="px-xl py-2 rounded-lg border border-outline-variant text-secondary font-data-tabular text-data-tabular hover:bg-surface-container transition-colors" type="button">
+                        Cancel
+                    </button>
+<button class="px-xl py-2 rounded-lg bg-primary text-on-primary font-data-tabular text-data-tabular hover:bg-surface-tint transition-colors shadow-sm flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-sm">play_arrow</span>
+                        Execute Session
+                    </button>
+</div>
+</form>
+</div>
+</main>
+</body></html>

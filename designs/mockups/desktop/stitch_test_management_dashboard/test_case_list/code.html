@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Test Case Review - TestOps</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=Manrope:wght@500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#191b23",
+                        "surface-bright": "#faf8ff",
+                        "outline-variant": "#c3c6d7",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#e1e2ed",
+                        "on-secondary-container": "#54647a",
+                        "tertiary-container": "#bc4800",
+                        "outline": "#737686",
+                        "secondary-container": "#d0e1fb",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-container-highest": "#e1e2ed",
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#eeefff",
+                        "surface-container-high": "#e7e7f3",
+                        "surface-tint": "#0053db",
+                        "on-surface": "#191b23",
+                        "on-primary-fixed": "#00174b",
+                        "surface-container": "#ededf9",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "error": "#ba1a1a",
+                        "surface": "#faf8ff",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "surface-dim": "#d9d9e5",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed": "#360f00",
+                        "surface-container-low": "#f3f3fe",
+                        "primary-fixed": "#dbe1ff",
+                        "secondary-fixed": "#d3e4fe",
+                        "primary-container": "#2563eb",
+                        "primary": "#004ac6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#ffede6",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#f0f0fb",
+                        "inverse-primary": "#b4c5ff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "tertiary": "#943700",
+                        "secondary": "#505f76",
+                        "on-error": "#ffffff",
+                        "background": "#faf8ff",
+                        "on-surface-variant": "#434655",
+                        "on-secondary-fixed": "#0b1c30",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "inverse-surface": "#2e3039",
+                        "tertiary-fixed": "#ffdbcd",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "1.5rem",
+                        "container-max": "1440px",
+                        "lg": "1.5rem",
+                        "base": "4px",
+                        "xs": "0.25rem",
+                        "sm": "0.5rem",
+                        "xl": "2.5rem",
+                        "md": "1rem"
+                    },
+                    "fontFamily": {
+                        "data-tabular": ["Inter"],
+                        "headline-md": ["Manrope"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Manrope"],
+                        "label-caps": ["Inter"]
+                    },
+                    "fontSize": {
+                        "data-tabular": ["14px", { "lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "display-lg": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Custom styles for zebra striping on hover */
+        .table-row-hover:hover {
+            background-color: theme('colors.surface-container');
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md h-screen overflow-hidden flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-surface-container-lowest text-primary flex justify-between items-center px-6 w-full h-16 fixed top-0 z-50 border-b border-surface-variant shadow-sm hidden md:flex">
+<div class="flex items-center gap-gutter">
+<span class="text-on-surface font-headline-md text-headline-md font-bold tracking-tighter">TestOps</span>
+<div class="relative hidden lg:block w-64 ml-lg">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span>
+<input class="w-full pl-xl pr-sm py-sm bg-surface-container-low border border-outline-variant rounded focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-data-tabular font-data-tabular" placeholder="Search..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined cursor-pointer active:opacity-70 transition-all hover:bg-surface-container p-sm rounded-full text-secondary">notifications</span>
+<span class="material-symbols-outlined cursor-pointer active:opacity-70 transition-all hover:bg-surface-container p-sm rounded-full text-secondary">help</span>
+<span class="material-symbols-outlined cursor-pointer active:opacity-70 transition-all hover:bg-surface-container p-sm rounded-full text-secondary">account_circle</span>
+</div>
+</header>
+<div class="flex flex-1 pt-16 h-full">
+<!-- SideNavBar -->
+<nav class="bg-surface-container-lowest text-primary fixed left-0 top-0 h-full w-64 pt-16 z-40 border-r border-surface-variant flex flex-col py-4 gap-1 hidden md:flex">
+<div class="px-6 py-4 border-b border-surface-variant mb-4">
+<div class="flex items-center gap-sm mb-1">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold font-headline-md text-sm">P</div>
+<span class="font-headline-md text-body-md font-bold text-on-surface truncate">Project Alpha</span>
+</div>
+<span class="font-label-caps text-label-caps text-secondary block truncate">Quality Engineering</span>
+</div>
+<a class="flex items-center gap-md px-6 py-sm text-secondary hover:text-on-surface hover:bg-surface-container transition-all duration-200 ease-in-out font-data-tabular text-data-tabular" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+                Overview
+            </a>
+<a class="flex items-center gap-md px-6 py-sm text-secondary hover:text-on-surface hover:bg-surface-container transition-all duration-200 ease-in-out font-data-tabular text-data-tabular" href="#">
+<span class="material-symbols-outlined text-[20px]">upload_file</span>
+                Ingest
+            </a>
+<a class="flex items-center gap-md px-6 py-sm text-secondary hover:text-on-surface hover:bg-surface-container transition-all duration-200 ease-in-out font-data-tabular text-data-tabular" href="#">
+<span class="material-symbols-outlined text-[20px]">auto_awesome</span>
+                Generate
+            </a>
+<a class="flex items-center gap-md px-6 py-sm text-primary font-bold border-r-4 border-primary bg-primary-container/10 transition-all duration-200 ease-in-out font-data-tabular text-data-tabular" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">checklist</span>
+                Review
+            </a>
+<a class="flex items-center gap-md px-6 py-sm text-secondary hover:text-on-surface hover:bg-surface-container transition-all duration-200 ease-in-out font-data-tabular text-data-tabular" href="#">
+<span class="material-symbols-outlined text-[20px]">verified_user</span>
+                Approve
+            </a>
+<a class="flex items-center gap-md px-6 py-sm text-secondary hover:text-on-surface hover:bg-surface-container transition-all duration-200 ease-in-out font-data-tabular text-data-tabular" href="#">
+<span class="material-symbols-outlined text-[20px]">play_circle</span>
+                Run
+            </a>
+<a class="flex items-center gap-md px-6 py-sm text-secondary hover:text-on-surface hover:bg-surface-container transition-all duration-200 ease-in-out font-data-tabular text-data-tabular" href="#">
+<span class="material-symbols-outlined text-[20px]">bar_chart</span>
+                Reports
+            </a>
+<a class="flex items-center gap-md px-6 py-sm text-secondary hover:text-on-surface hover:bg-surface-container transition-all duration-200 ease-in-out font-data-tabular text-data-tabular mt-auto" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+                Settings
+            </a>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-0 md:ml-64 bg-surface-container-lowest h-full overflow-y-auto overflow-x-hidden p-gutter">
+<div class="max-w-container-max mx-auto h-full flex flex-col gap-lg">
+<!-- Page Header -->
+<div class="flex flex-col gap-xs mb-md">
+<h1 class="font-display-lg text-display-lg text-on-surface">Test Case Review</h1>
+<p class="font-body-md text-body-md text-secondary">Manage and approve generated test cases</p>
+</div>
+<!-- Filters & Actions Bar -->
+<div class="bg-surface-container-lowest rounded-lg border border-surface-variant p-md flex flex-col lg:flex-row gap-lg justify-between items-start lg:items-center shadow-[0_4px_6px_rgba(0,0,0,0.05)]">
+<!-- Phase Tabs -->
+<div class="flex flex-wrap gap-2">
+<button class="px-md py-sm bg-primary-container text-on-primary-container rounded-full font-data-tabular text-data-tabular transition-colors">All (156)</button>
+<button class="px-md py-sm bg-surface-container-low text-secondary hover:bg-surface-container hover:text-on-surface rounded-full font-data-tabular text-data-tabular border border-outline-variant transition-colors">Functional (82)</button>
+<button class="px-md py-sm bg-surface-container-low text-secondary hover:bg-surface-container hover:text-on-surface rounded-full font-data-tabular text-data-tabular border border-outline-variant transition-colors">Performance (44)</button>
+<button class="px-md py-sm bg-surface-container-low text-secondary hover:bg-surface-container hover:text-on-surface rounded-full font-data-tabular text-data-tabular border border-outline-variant transition-colors">Security (30)</button>
+</div>
+<!-- Secondary Filters -->
+<div class="flex flex-col sm:flex-row gap-md w-full lg:w-auto">
+<div class="relative flex-1 sm:flex-none sm:w-48">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+<input class="w-full pl-xl pr-sm py-sm bg-surface-container-low border border-outline-variant rounded focus:border-primary focus:ring-1 focus:ring-primary outline-none text-data-tabular font-data-tabular h-10" placeholder="Search cases..." type="text"/>
+</div>
+<div class="relative flex-1 sm:flex-none sm:w-48">
+<select class="w-full pl-sm pr-xl py-sm bg-surface-container-low border border-outline-variant rounded focus:border-primary focus:ring-1 focus:ring-primary outline-none text-data-tabular font-data-tabular appearance-none h-10">
+<option>Status: All</option>
+<option>Approved</option>
+<option>Pending</option>
+<option>Rejected</option>
+</select>
+<span class="material-symbols-outlined absolute right-sm top-1/2 -translate-y-1/2 text-outline pointer-events-none">arrow_drop_down</span>
+</div>
+</div>
+</div>
+<!-- Bulk Actions (Visible when items selected) -->
+<div class="bg-secondary-container/30 border border-secondary-fixed-dim rounded-lg p-sm flex justify-between items-center px-md transition-all">
+<span class="font-data-tabular text-data-tabular text-on-surface font-semibold">3 items selected</span>
+<div class="flex gap-sm">
+<button class="px-md py-xs border border-error text-error hover:bg-error-container rounded font-data-tabular text-data-tabular transition-colors flex items-center gap-xs h-8">
+<span class="material-symbols-outlined text-[16px]">delete</span> Delete
+                        </button>
+<button class="px-md py-xs bg-primary text-on-primary hover:bg-primary-container rounded font-data-tabular text-data-tabular transition-colors flex items-center gap-xs shadow-sm h-8">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> Bulk Approve
+                        </button>
+</div>
+</div>
+<!-- Data Table -->
+<div class="bg-surface-container-lowest rounded-lg border border-surface-variant shadow-[0_4px_6px_rgba(0,0,0,0.05)] overflow-hidden flex-1 flex flex-col">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low border-b border-surface-variant sticky top-0 z-10">
+<tr>
+<th class="p-md w-12"><input checked="" class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/></th>
+<th class="p-md font-label-caps text-label-caps text-secondary uppercase">Test Case Name</th>
+<th class="p-md font-label-caps text-label-caps text-secondary uppercase">Phase</th>
+<th class="p-md font-label-caps text-label-caps text-secondary uppercase">Approval Status</th>
+<th class="p-md font-label-caps text-label-caps text-secondary uppercase">Tags</th>
+<th class="p-md font-label-caps text-label-caps text-secondary uppercase">Created Date</th>
+<th class="p-md w-12"></th>
+</tr>
+</thead>
+<tbody class="font-data-tabular text-data-tabular text-on-surface divide-y divide-surface-variant">
+<!-- Row 1 -->
+<tr class="table-row-hover transition-colors h-12 bg-surface">
+<td class="p-md"><input checked="" class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="p-md font-semibold">User Authentication Flow</td>
+<td class="p-md">
+<div class="inline-flex items-center gap-xs px-2 py-1 rounded bg-secondary-container text-on-secondary-fixed text-xs font-semibold">
+<span class="material-symbols-outlined text-[14px]">integration_instructions</span> Functional
+                                        </div>
+</td>
+<td class="p-md">
+<div class="inline-flex items-center gap-xs px-2 py-1 rounded-full bg-tertiary-container/10 text-tertiary font-bold text-xs border border-tertiary-container/20">
+                                            Pending
+                                        </div>
+</td>
+<td class="p-md">
+<div class="flex gap-1 flex-wrap">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high border border-outline-variant text-secondary text-xs">#Auth</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high border border-outline-variant text-secondary text-xs">#Security</span>
+</div>
+</td>
+<td class="p-md text-secondary">Oct 25, 2023</td>
+<td class="p-md text-right"><button class="text-outline hover:text-on-surface"><span class="material-symbols-outlined text-[20px]">more_vert</span></button></td>
+</tr>
+<!-- Row 2 -->
+<tr class="table-row-hover transition-colors h-12 bg-surface">
+<td class="p-md"><input checked="" class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="p-md font-semibold">Database Latency Test</td>
+<td class="p-md">
+<div class="inline-flex items-center gap-xs px-2 py-1 rounded bg-[#f3e8ff] text-[#6b21a8] text-xs font-semibold border border-[#d8b4fe]">
+<span class="material-symbols-outlined text-[14px]">speed</span> Performance
+                                        </div>
+</td>
+<td class="p-md">
+<div class="inline-flex items-center gap-xs px-2 py-1 rounded-full bg-tertiary-container/10 text-tertiary font-bold text-xs border border-tertiary-container/20">
+                                            Pending
+                                        </div>
+</td>
+<td class="p-md">
+<div class="flex gap-1 flex-wrap">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high border border-outline-variant text-secondary text-xs">#DB</span>
+</div>
+</td>
+<td class="p-md text-secondary">Oct 24, 2023</td>
+<td class="p-md text-right"><button class="text-outline hover:text-on-surface"><span class="material-symbols-outlined text-[20px]">more_vert</span></button></td>
+</tr>
+<!-- Row 3 -->
+<tr class="table-row-hover transition-colors h-12 bg-surface">
+<td class="p-md"><input checked="" class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="p-md font-semibold">XSS Vulnerability Scan</td>
+<td class="p-md">
+<div class="inline-flex items-center gap-xs px-2 py-1 rounded bg-error-container text-on-error-container text-xs font-semibold">
+<span class="material-symbols-outlined text-[14px]">security</span> Security
+                                        </div>
+</td>
+<td class="p-md">
+<div class="inline-flex items-center gap-xs px-2 py-1 rounded-full bg-[#dcfce7] text-[#166534] font-bold text-xs border border-[#bbf7d0]">
+                                            Approved
+                                        </div>
+</td>
+<td class="p-md">
+<div class="flex gap-1 flex-wrap">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high border border-outline-variant text-secondary text-xs">#Security</span>
+</div>
+</td>
+<td class="p-md text-secondary">Oct 24, 2023</td>
+<td class="p-md text-right"><button class="text-outline hover:text-on-surface"><span class="material-symbols-outlined text-[20px]">more_vert</span></button></td>
+</tr>
+<!-- Row 4 -->
+<tr class="table-row-hover transition-colors h-12">
+<td class="p-md"><input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="p-md font-semibold text-secondary">API Payload Validation</td>
+<td class="p-md">
+<div class="inline-flex items-center gap-xs px-2 py-1 rounded bg-secondary-container text-on-secondary-fixed text-xs font-semibold">
+<span class="material-symbols-outlined text-[14px]">integration_instructions</span> Functional
+                                        </div>
+</td>
+<td class="p-md">
+<div class="inline-flex items-center gap-xs px-2 py-1 rounded-full bg-error-container text-on-error-container font-bold text-xs border border-error-container/50">
+                                            Rejected
+                                        </div>
+</td>
+<td class="p-md">
+<div class="flex gap-1 flex-wrap">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high border border-outline-variant text-secondary text-xs">#API</span>
+</div>
+</td>
+<td class="p-md text-secondary">Oct 23, 2023</td>
+<td class="p-md text-right"><button class="text-outline hover:text-on-surface"><span class="material-symbols-outlined text-[20px]">more_vert</span></button></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

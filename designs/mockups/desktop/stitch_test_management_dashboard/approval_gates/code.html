@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TestOps Pro - Approval Gates</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;900&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#505f76",
+                        "inverse-primary": "#b4c5ff",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "on-primary-container": "#eeefff",
+                        "surface-container-highest": "#e1e2ed",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#d9d9e5",
+                        "secondary-container": "#d0e1fb",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "outline-variant": "#c3c6d7",
+                        "outline": "#737686",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "primary": "#004ac6",
+                        "on-primary-fixed": "#00174b",
+                        "on-background": "#191b23",
+                        "surface-container-high": "#e7e7f3",
+                        "surface-container-low": "#f3f3fe",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#d3e4fe",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#e1e2ed",
+                        "surface-tint": "#0053db",
+                        "on-surface-variant": "#434655",
+                        "surface-container": "#ededf9",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#2e3039",
+                        "primary-fixed": "#dbe1ff",
+                        "inverse-on-surface": "#f0f0fb",
+                        "tertiary": "#943700",
+                        "on-tertiary-fixed": "#360f00",
+                        "surface": "#faf8ff",
+                        "on-surface": "#191b23",
+                        "background": "#faf8ff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#ffdbcd",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "on-tertiary-container": "#ffede6",
+                        "tertiary-container": "#bc4800",
+                        "primary-container": "#2563eb",
+                        "on-secondary-container": "#54647a",
+                        "surface-bright": "#faf8ff",
+                        "on-secondary-fixed": "#0b1c30"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "lg": "1.5rem",
+                        "md": "1rem",
+                        "xl": "2.5rem",
+                        "sm": "0.5rem",
+                        "container-max": "1440px",
+                        "xs": "0.25rem",
+                        "gutter": "1.5rem"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Manrope"],
+                        "body-md": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-md": ["Manrope"],
+                        "data-tabular": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "data-tabular": ["14px", { "lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md h-screen overflow-hidden flex">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col bg-slate-50 dark:bg-slate-950 h-screen w-64 border-r border-slate-200 dark:border-slate-800 pt-16 z-40 fixed left-0 top-0">
+<div class="px-lg pb-md">
+<h1 class="text-lg font-black text-slate-900 dark:text-white">Engineering Quality</h1>
+<p class="text-sm text-slate-500 font-medium">V-4.2 Stable</p>
+</div>
+<div class="px-lg pb-lg">
+<button class="w-full bg-primary-container text-on-primary-container font-headline-md text-data-tabular py-sm rounded-DEFAULT flex items-center justify-center gap-sm hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-[18px]">add</span> New Pipeline
+            </button>
+</div>
+<ul class="flex flex-col flex-1 px-sm gap-xs">
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-DEFAULT text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 duration-150 ease-out active:scale-95 font-manrope text-sm font-semibold tracking-wide" href="#">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-DEFAULT bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 border-r-4 border-blue-600 duration-150 ease-out active:scale-95 font-manrope text-sm font-semibold tracking-wide" href="#">
+<span class="material-symbols-outlined">fact_check</span> Approval Gates
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-DEFAULT text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 duration-150 ease-out active:scale-95 font-manrope text-sm font-semibold tracking-wide" href="#">
+<span class="material-symbols-outlined">play_circle</span> Test Runs
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-DEFAULT text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 duration-150 ease-out active:scale-95 font-manrope text-sm font-semibold tracking-wide" href="#">
+<span class="material-symbols-outlined">alt_route</span> Pipelines
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-DEFAULT text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 duration-150 ease-out active:scale-95 font-manrope text-sm font-semibold tracking-wide" href="#">
+<span class="material-symbols-outlined">analytics</span> Reporting
+                </a>
+</li>
+</ul>
+<ul class="flex flex-col px-sm gap-xs pb-lg mt-auto">
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-DEFAULT text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 duration-150 ease-out active:scale-95 font-manrope text-sm font-semibold tracking-wide" href="#">
+<span class="material-symbols-outlined">menu_book</span> Documentation
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-DEFAULT text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 duration-150 ease-out active:scale-95 font-manrope text-sm font-semibold tracking-wide" href="#">
+<span class="material-symbols-outlined">support_agent</span> Support
+                </a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col md:ml-64 w-full h-full">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center h-16 px-6 w-full sticky top-0 z-50 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-none transition-all duration-200 ease-in-out">
+<div class="flex items-center gap-md">
+<h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">TestOps Pro</h2>
+<div class="hidden md:flex items-center border border-slate-200 rounded-DEFAULT px-sm py-xs bg-slate-50 focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600 transition-all ml-lg">
+<span class="material-symbols-outlined text-slate-400 mr-sm text-[18px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 p-0 text-sm w-64 text-slate-900" placeholder="Search..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<span class="hidden md:inline-block font-manrope text-sm font-medium text-slate-500 bg-slate-100 px-sm py-xs rounded-DEFAULT">Session Active</span>
+<button class="text-slate-500 hover:bg-slate-50 hover:text-blue-600 p-sm rounded-DEFAULT transition-all duration-200 ease-in-out">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-slate-500 hover:bg-slate-50 hover:text-blue-600 p-sm rounded-DEFAULT transition-all duration-200 ease-in-out">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="text-slate-500 hover:bg-slate-50 hover:text-blue-600 p-sm rounded-DEFAULT transition-all duration-200 ease-in-out">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-slate-300 overflow-hidden ml-sm cursor-pointer border border-slate-200">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="A close-up portrait of a professional individual in a well-lit studio setting. The lighting is soft and flattering, highlighting their features against a neutral background. The mood is confident and approachable, fitting for a corporate software tool avatar. The aesthetic is clean, modern, and high-quality, aligning with a premium engineering design system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLbzfYBFJNqzsK0Ucu_VmKxjJ0R2Ry07KmA-DUZKNEhY74DUN-jqhk_5iHarkxMdzu-BX-EdOCzCV-TpqtnX0n66_MqB99FRPdeeqtioJTEoZ1matFT_9PnH1zqS6KNMce7O3RkilhhPH1kk-y1teeFraokVKtZcDzXnMoR40jwqUQH6hjXI5DK-DwsAh7qgwanf7KZUMl4qfmD7XWTXQOI4-p0l13U-ycsqP5tFNx25P4KgvzocmV8xTsxUiUW8O_n0xfduP2H_Y"/>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<main class="flex-1 overflow-y-auto p-xl bg-surface">
+<div class="max-w-[1440px] mx-auto">
+<div class="mb-xl">
+<h1 class="font-display-lg text-display-lg text-on-surface mb-sm">Approval Gates</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Review and manage phase progression for Session: Alpha-7</p>
+</div>
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-gutter">
+<!-- Functional Phase Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container-highest p-lg flex flex-col h-full relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-amber-500"></div>
+<div class="flex justify-between items-start mb-md">
+<div>
+<span class="font-label-caps text-label-caps text-blue-600 mb-xs block uppercase tracking-wider">Functional</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Functional Phase</h3>
+</div>
+<span class="inline-flex items-center px-sm py-xs rounded-full bg-amber-100 text-amber-800 font-data-tabular text-[12px] font-bold">
+                                PENDING
+                            </span>
+</div>
+<div class="mb-lg">
+<p class="font-data-tabular text-data-tabular text-on-surface-variant flex items-center gap-sm">
+<span class="material-symbols-outlined text-[18px] text-amber-500">hourglass_empty</span>
+                                12 test cases awaiting approval
+                            </p>
+</div>
+<div class="mt-auto space-y-md">
+<div class="space-y-sm">
+<label class="font-data-tabular text-[12px] font-semibold text-on-surface-variant block">Reviewer Comments</label>
+<textarea class="w-full border border-outline-variant rounded-DEFAULT p-sm font-body-md text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder="Add notes before deciding..." rows="3"></textarea>
+</div>
+<div class="flex gap-sm">
+<button class="flex-1 bg-primary text-on-primary font-data-tabular py-sm px-md rounded-DEFAULT hover:bg-primary/90 transition-colors">Approve</button>
+<button class="flex-1 bg-white border border-error text-error font-data-tabular py-sm px-md rounded-DEFAULT hover:bg-error-container transition-colors">Reject</button>
+<button class="px-md border border-outline-variant text-on-surface-variant font-data-tabular rounded-DEFAULT hover:bg-surface-container transition-colors">Skip</button>
+</div>
+</div>
+</div>
+<!-- Performance Phase Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container-highest p-lg flex flex-col h-full relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-emerald-500"></div>
+<div class="flex justify-between items-start mb-md">
+<div>
+<span class="font-label-caps text-label-caps text-purple-600 mb-xs block uppercase tracking-wider">Performance</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Performance Phase</h3>
+</div>
+<span class="inline-flex items-center px-sm py-xs rounded-full bg-emerald-100 text-emerald-800 font-data-tabular text-[12px] font-bold">
+                                APPROVED
+                            </span>
+</div>
+<div class="mb-lg space-y-sm">
+<p class="font-data-tabular text-data-tabular text-on-surface-variant flex items-center gap-sm">
+<span class="material-symbols-outlined text-[18px] text-emerald-500">check_circle</span>
+                                All tests approved
+                            </p>
+<p class="font-data-tabular text-[13px] text-on-surface-variant flex items-start gap-sm p-sm bg-surface-container rounded-DEFAULT">
+<span class="material-symbols-outlined text-[16px] mt-[2px]">person</span>
+<span>Approved by <strong>Sarah Jenkins</strong><br/><span class="text-slate-500 text-[11px]">Oct 25, 10:45 AM</span></span>
+</p>
+</div>
+</div>
+<!-- Security Phase Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container-highest p-lg flex flex-col h-full relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-slate-400"></div>
+<div class="flex justify-between items-start mb-md">
+<div>
+<span class="font-label-caps text-label-caps text-orange-600 mb-xs block uppercase tracking-wider">Security</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Security Phase</h3>
+</div>
+<span class="inline-flex items-center px-sm py-xs rounded-full bg-slate-100 text-slate-600 font-data-tabular text-[12px] font-bold border border-slate-200">
+                                SKIPPED
+                            </span>
+</div>
+<div class="mb-lg space-y-sm">
+<p class="font-data-tabular text-data-tabular text-on-surface-variant flex items-center gap-sm">
+<span class="material-symbols-outlined text-[18px] text-slate-400">block</span>
+                                0 tests reviewed
+                            </p>
+<p class="font-data-tabular text-[13px] text-on-surface-variant flex items-start gap-sm p-sm bg-surface-container rounded-DEFAULT">
+<span class="material-symbols-outlined text-[16px] mt-[2px]">smart_toy</span>
+<span>Skipped by <strong>System Auto-Policy</strong></span>
+</p>
+</div>
+<div class="mt-auto">
+<button class="w-full bg-white border border-outline-variant text-on-surface font-data-tabular py-sm px-md rounded-DEFAULT hover:bg-surface-container transition-colors flex justify-center items-center gap-sm">
+<span class="material-symbols-outlined text-[18px]">restore</span> Re-enable Gate
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

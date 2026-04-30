@@ -1,0 +1,25 @@
+{
+  "target": "http://localhost:3456",
+  "browsers": ["chromium"],
+  "performance": {
+    "virtualUsers": 10,
+    "rampUpSeconds": 5,
+    "durationSeconds": 10,
+    "sla": {
+      "responseTimeP95Ms": 500,
+      "errorRateMax": 0.05,
+      "throughputMinRps": 10
+    }
+  },
+  "security": {
+    "zapPath": "",
+    "passiveScan": true,
+    "activeScan": true,
+    "severityThreshold": "MEDIUM"
+  },
+  "output": {
+    "format": "terminal",
+    "screenshots": true,
+    "networkLogs": true
+  }
+}

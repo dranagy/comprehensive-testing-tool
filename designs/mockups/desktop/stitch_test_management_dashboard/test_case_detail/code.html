@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Test Case Detail - User Authentication Flow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=Manrope:wght@500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary": "#ffffff",
+                      "on-background": "#191b23",
+                      "surface-container-highest": "#e1e2ed",
+                      "on-error-container": "#93000a",
+                      "surface-container-high": "#e7e7f3",
+                      "secondary-container": "#d0e1fb",
+                      "on-secondary-fixed-variant": "#38485d",
+                      "tertiary-container": "#bc4800",
+                      "secondary-fixed": "#d3e4fe",
+                      "tertiary-fixed-dim": "#ffb596",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-bright": "#faf8ff",
+                      "primary": "#004ac6",
+                      "on-tertiary-container": "#ffede6",
+                      "surface": "#faf8ff",
+                      "inverse-primary": "#b4c5ff",
+                      "error": "#ba1a1a",
+                      "primary-fixed": "#dbe1ff",
+                      "inverse-on-surface": "#f0f0fb",
+                      "surface-variant": "#e1e2ed",
+                      "on-tertiary-fixed-variant": "#7d2d00",
+                      "on-error": "#ffffff",
+                      "on-secondary-fixed": "#0b1c30",
+                      "surface-dim": "#d9d9e5",
+                      "surface-container": "#ededf9",
+                      "secondary-fixed-dim": "#b7c8e1",
+                      "on-primary-container": "#eeefff",
+                      "outline": "#737686",
+                      "on-secondary-container": "#54647a",
+                      "on-surface": "#191b23",
+                      "background": "#faf8ff",
+                      "surface-container-low": "#f3f3fe",
+                      "primary-container": "#2563eb",
+                      "tertiary-fixed": "#ffdbcd",
+                      "tertiary": "#943700",
+                      "error-container": "#ffdad6",
+                      "secondary": "#505f76",
+                      "on-tertiary": "#ffffff",
+                      "surface-tint": "#0053db",
+                      "outline-variant": "#c3c6d7",
+                      "on-tertiary-fixed": "#360f00",
+                      "on-surface-variant": "#434655",
+                      "on-primary": "#ffffff",
+                      "inverse-surface": "#2e3039",
+                      "on-primary-fixed-variant": "#003ea8",
+                      "primary-fixed-dim": "#b4c5ff",
+                      "on-primary-fixed": "#00174b"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "xl": "2.5rem",
+                      "sm": "0.5rem",
+                      "lg": "1.5rem",
+                      "container-max": "1440px",
+                      "base": "4px",
+                      "gutter": "1.5rem",
+                      "xs": "0.25rem",
+                      "md": "1rem"
+              },
+              "fontFamily": {
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Manrope"
+                      ],
+                      "display-lg": [
+                              "Manrope"
+                      ],
+                      "data-tabular": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "36px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "data-tabular": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill-icon {
+          font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 h-16 bg-white dark:bg-slate-900 shadow-sm border-b border-slate-200 dark:border-slate-800 flex justify-between items-center px-6 font-['Manrope'] font-medium antialiased text-sm">
+<div class="flex items-center gap-4">
+<span class="text-xl font-bold tracking-tighter text-slate-900 dark:text-white">TestOps</span>
+<!-- search on left logic implied -->
+<div class="relative hidden md:block ml-8">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none w-64" placeholder="Search test cases..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4 text-blue-600 dark:text-blue-400">
+<button class="p-2 rounded-full hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-pointer active:opacity-70 transition-all">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 rounded-full hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-pointer active:opacity-70 transition-all">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<button class="p-2 rounded-full hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-pointer active:opacity-70 transition-all">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-64 pt-16 z-40 bg-slate-50 dark:bg-slate-950 border-r border-slate-200 dark:border-slate-800 flex flex-col h-full py-4 gap-1 font-['Manrope'] text-sm tracking-wide">
+<div class="px-6 py-4 mb-4 border-b border-slate-200 dark:border-slate-800">
+<h2 class="text-lg font-black text-blue-600 dark:text-blue-400">Project Alpha</h2>
+<p class="text-slate-500 text-xs mt-1">Quality Engineering</p>
+</div>
+<div class="flex-1 px-3 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-900 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Overview
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-900 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">upload_file</span>
+                Ingest
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-900 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">auto_awesome</span>
+                Generate
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-blue-600 dark:text-blue-400 font-bold border-r-4 border-blue-600 bg-blue-50/50 dark:bg-blue-900/20 duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">checklist</span>
+                Review
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-900 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">verified_user</span>
+                Approve
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-900 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">play_circle</span>
+                Run
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-900 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+                Reports
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-900 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="ml-64 pt-16 p-xl min-h-screen">
+<!-- Action Bar & Header -->
+<div class="flex justify-between items-start mb-lg pb-md border-b border-outline-variant">
+<div>
+<div class="flex items-center gap-md mb-sm">
+<span class="px-3 py-1 bg-surface-variant text-on-surface-variant rounded-full text-xs font-bold uppercase tracking-wider">Functional</span>
+<span class="px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">pending</span>
+                        Pending
+                    </span>
+<span class="text-secondary text-sm">ID: TC-8492</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-on-surface mb-2">User Authentication Flow</h1>
+<p class="text-on-surface-variant max-w-3xl">Validates the end-to-end authentication process including successful login, incorrect password handling, and session token generation across supported browsers.</p>
+<div class="flex gap-2 mt-md">
+<span class="px-2 py-1 bg-surface-container text-secondary text-xs rounded">#Auth</span>
+<span class="px-2 py-1 bg-surface-container text-secondary text-xs rounded">#Security</span>
+<span class="px-2 py-1 bg-surface-container text-secondary text-xs rounded">#Core</span>
+</div>
+</div>
+<div class="flex gap-md">
+<button class="px-4 py-2 border border-outline-variant rounded text-on-surface font-label-caps text-label-caps hover:bg-surface-container transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+                    Edit
+                </button>
+<button class="px-4 py-2 bg-error text-on-error rounded font-label-caps text-label-caps hover:opacity-90 transition-opacity flex items-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">close</span>
+                    Reject
+                </button>
+<button class="px-4 py-2 bg-primary text-on-primary rounded font-label-caps text-label-caps hover:bg-primary-container transition-colors flex items-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">check</span>
+                    Approve
+                </button>
+</div>
+</div>
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Left Column: Steps & Assertions -->
+<div class="col-span-8 space-y-xl">
+<!-- Test Steps -->
+<section class="bg-surface-container-lowest rounded-lg shadow-[0_4px_6px_rgba(0,0,0,0.05)] border border-surface-variant overflow-hidden">
+<div class="p-lg border-b border-surface-variant bg-surface-bright flex justify-between items-center">
+<h2 class="font-headline-md text-headline-md text-on-surface text-lg">Execution Steps</h2>
+<span class="text-secondary text-sm">4 Steps</span>
+</div>
+<div class="p-0">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-surface-variant text-on-surface-variant font-label-caps text-label-caps">
+<th class="p-md w-16 text-center">#</th>
+<th class="p-md w-32">Action</th>
+<th class="p-md w-1/3">Target Selector</th>
+<th class="p-md">Value / Description</th>
+</tr>
+</thead>
+<tbody class="font-data-tabular text-data-tabular text-on-surface">
+<tr class="border-b border-surface-variant hover:bg-surface-container-low transition-colors group">
+<td class="p-md text-center text-secondary">1</td>
+<td class="p-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]">web</span>
+                                            Navigate
+                                        </div>
+</td>
+<td class="p-md text-primary font-mono text-xs">/login</td>
+<td class="p-md text-secondary">Load the login page</td>
+</tr>
+<tr class="border-b border-surface-variant hover:bg-surface-container-low transition-colors group bg-surface-container-lowest">
+<td class="p-md text-center text-secondary">2</td>
+<td class="p-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]">keyboard</span>
+                                            Type
+                                        </div>
+</td>
+<td class="p-md text-primary font-mono text-xs">input[name="email"]</td>
+<td class="p-md">
+<div class="bg-surface-container px-2 py-1 rounded inline-block text-xs font-mono mb-1">testuser@example.com</div>
+<div class="text-secondary text-xs">Enter valid registered email</div>
+</td>
+</tr>
+<tr class="border-b border-surface-variant hover:bg-surface-container-low transition-colors group">
+<td class="p-md text-center text-secondary">3</td>
+<td class="p-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]">keyboard</span>
+                                            Type
+                                        </div>
+</td>
+<td class="p-md text-primary font-mono text-xs">input[name="password"]</td>
+<td class="p-md">
+<div class="bg-surface-container px-2 py-1 rounded inline-block text-xs font-mono mb-1">SecurePass123!</div>
+<div class="text-secondary text-xs">Enter correct password</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group bg-surface-container-lowest">
+<td class="p-md text-center text-secondary">4</td>
+<td class="p-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]">touch_app</span>
+                                            Click
+                                        </div>
+</td>
+<td class="p-md text-primary font-mono text-xs">button[type="submit"]</td>
+<td class="p-md text-secondary">Submit the login form</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Assertions -->
+<section class="bg-surface-container-lowest rounded-lg shadow-[0_4px_6px_rgba(0,0,0,0.05)] border border-surface-variant overflow-hidden">
+<div class="p-lg border-b border-surface-variant bg-surface-bright">
+<h2 class="font-headline-md text-headline-md text-on-surface text-lg">Assertions</h2>
+</div>
+<div class="p-md space-y-md">
+<div class="flex items-start gap-md p-md border border-outline-variant rounded bg-surface-container-lowest">
+<span class="material-symbols-outlined text-tertiary mt-1">rule</span>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-caps text-label-caps text-on-surface">URL Path Verification</span>
+<span class="text-xs text-secondary bg-surface-container px-2 py-1 rounded">URL_CONTAINS</span>
+</div>
+<div class="bg-surface-container-low p-2 rounded text-sm font-mono text-primary">/dashboard</div>
+</div>
+</div>
+<div class="flex items-start gap-md p-md border border-outline-variant rounded bg-surface-container-lowest">
+<span class="material-symbols-outlined text-tertiary mt-1">rule</span>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-caps text-label-caps text-on-surface">Element Visibility</span>
+<span class="text-xs text-secondary bg-surface-container px-2 py-1 rounded">BE_VISIBLE</span>
+</div>
+<div class="bg-surface-container-low p-2 rounded text-sm font-mono text-primary">div[data-testid="user-profile-widget"]</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Meta & History -->
+<div class="col-span-4 space-y-xl">
+<!-- Environment Config -->
+<section class="bg-surface-container-lowest rounded-lg shadow-[0_4px_6px_rgba(0,0,0,0.05)] border border-surface-variant p-lg">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-md pb-2 border-b border-surface-variant">Execution Parameters</h3>
+<div class="space-y-4">
+<div>
+<span class="block text-xs text-secondary mb-1">Target Environments</span>
+<div class="flex gap-2">
+<span class="px-2 py-1 bg-surface-container text-on-surface text-xs rounded border border-outline-variant">Staging</span>
+<span class="px-2 py-1 bg-surface-container text-on-surface text-xs rounded border border-outline-variant">Production</span>
+</div>
+</div>
+<div>
+<span class="block text-xs text-secondary mb-1">Browsers</span>
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-secondary" title="Chrome">language</span>
+<span class="material-symbols-outlined text-secondary" title="Firefox">public</span>
+</div>
+</div>
+<div>
+<span class="block text-xs text-secondary mb-1">Timeout</span>
+<span class="text-sm font-data-tabular">30000 ms</span>
+</div>
+</div>
+</section>
+<!-- History Timeline -->
+<section class="bg-surface-container-lowest rounded-lg shadow-[0_4px_6px_rgba(0,0,0,0.05)] border border-surface-variant p-lg">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-md pb-2 border-b border-surface-variant">Edit History</h3>
+<div class="relative pl-4 space-y-6 before:absolute before:inset-0 before:ml-[23px] before:w-[2px] before:bg-surface-variant before:h-full">
+<div class="relative flex items-start gap-4">
+<div class="absolute -left-6 bg-surface-container-lowest rounded-full p-1 border-2 border-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-secondary">edit</span>
+</div>
+<div class="ml-2">
+<p class="text-sm text-on-surface">Updated assertions for new dashboard layout.</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-xs font-bold text-on-surface-variant">Sarah Jenkins</span>
+<span class="text-xs text-secondary">2 hours ago</span>
+</div>
+</div>
+</div>
+<div class="relative flex items-start gap-4">
+<div class="absolute -left-6 bg-surface-container-lowest rounded-full p-1 border-2 border-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary">add</span>
+</div>
+<div class="ml-2">
+<p class="text-sm text-on-surface">Test case created and drafted.</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-xs font-bold text-on-surface-variant">Mike Torres</span>
+<span class="text-xs text-secondary">Oct 24, 2023</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+</body></html>

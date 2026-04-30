@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+
+# Build output
+dist/
+
+# Next.js
+frontend/.next/
+frontend/out/
+
+# Database files
+*.db
+.ctt/
+
+# Test results
+test-results/
+playwright-report/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs
+*.log
+npm-debug.log*
+
+# Coverage
+coverage/
+
+# Claude Code
+.claude/

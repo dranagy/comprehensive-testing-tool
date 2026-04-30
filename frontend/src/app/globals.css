@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: #faf8ff;
+  --color-foreground: #191b23;
+  --color-surface: #ffffff;
+  --color-surface-dim: #f3f3fe;
+  --color-surface-container: #ededf9;
+  --color-surface-container-high: #e7e7f3;
+  --color-surface-container-highest: #e1e2ed;
+  --color-border: #c3c6d7;
+  --color-border-light: #e1e2ed;
+  --color-on-surface: #191b23;
+  --color-on-surface-variant: #434655;
+  --color-outline: #737686;
+
+  --color-primary: #004ac6;
+  --color-primary-hover: #003ea8;
+  --color-primary-container: #2563eb;
+  --color-on-primary: #ffffff;
+  --color-primary-light: #dbe1ff;
+
+  --color-secondary: #505f76;
+  --color-secondary-container: #d0e1fb;
+
+  --color-error: #ba1a1a;
+  --color-error-container: #ffdad6;
+
+  --color-success: #16a34a;
+  --color-success-container: #dcfce7;
+
+  --color-warning: #d97706;
+  --color-warning-container: #fef3c7;
+
+  --color-info: #2563eb;
+  --color-info-container: #dbeafe;
+
+  --color-severity-critical: #dc2626;
+  --color-severity-high: #ea580c;
+  --color-severity-medium: #d97706;
+  --color-severity-low: #2563eb;
+  --color-severity-informational: #6b7280;
+
+  --color-status-pending: #d97706;
+  --color-status-approved: #16a34a;
+  --color-status-rejected: #dc2626;
+  --color-status-skipped: #6b7280;
+  --color-status-generated: #2563eb;
+  --color-status-modified: #8b5cf6;
+  --color-status-running: #2563eb;
+  --color-status-passed: #16a34a;
+  --color-status-failed: #dc2626;
+  --color-status-error: #ea580c;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --sidebar-width: 260px;
+  --topbar-height: 56px;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}

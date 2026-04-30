@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TestOps Pro - Export Session Data</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#54647a",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "on-primary-container": "#eeefff",
+                        "surface-container-high": "#e7e7f3",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f3f3fe",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#360f00",
+                        "secondary-fixed": "#d3e4fe",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "outline": "#737686",
+                        "inverse-primary": "#b4c5ff",
+                        "surface": "#faf8ff",
+                        "primary-container": "#2563eb",
+                        "inverse-surface": "#2e3039",
+                        "inverse-on-surface": "#f0f0fb",
+                        "surface-container-highest": "#e1e2ed",
+                        "tertiary-fixed": "#ffdbcd",
+                        "on-primary-fixed": "#00174b",
+                        "on-primary": "#ffffff",
+                        "on-background": "#191b23",
+                        "tertiary-container": "#bc4800",
+                        "on-tertiary-container": "#ffede6",
+                        "surface-variant": "#e1e2ed",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#faf8ff",
+                        "secondary": "#505f76",
+                        "outline-variant": "#c3c6d7",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "primary": "#004ac6",
+                        "surface-tint": "#0053db",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "on-secondary-fixed": "#0b1c30",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#d0e1fb",
+                        "background": "#faf8ff",
+                        "surface-container": "#ededf9",
+                        "on-surface-variant": "#434655",
+                        "error": "#ba1a1a",
+                        "tertiary": "#943700",
+                        "surface-dim": "#d9d9e5",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-surface": "#191b23",
+                        "primary-fixed": "#dbe1ff",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xl": "2.5rem",
+                        "xs": "0.25rem",
+                        "md": "1rem",
+                        "container-max": "1440px",
+                        "lg": "1.5rem",
+                        "base": "4px",
+                        "sm": "0.5rem",
+                        "gutter": "1.5rem"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Manrope"],
+                        "label-caps": ["Inter"],
+                        "data-tabular": ["Inter"],
+                        "headline-md": ["Manrope"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "data-tabular": ["14px", { "lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6, .font-headline-md, .font-display-lg { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="hidden md:flex docked h-full left-0 w-64 border-r border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 fixed top-14 bottom-0 flex-col py-4 z-40">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-sm">PA</div>
+<div>
+<div class="text-lg font-bold text-slate-900 dark:text-slate-100 leading-tight font-headline-md">Project Alpha</div>
+<div class="text-xs text-slate-500 font-label-caps text-label-caps uppercase">QA Workspace</div>
+</div>
+</div>
+</div>
+<div class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 ease-in-out font-manrope text-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span> Overview
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 ease-in-out font-manrope text-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">input</span> Ingest
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 ease-in-out font-manrope text-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">auto_fix_high</span> Generate
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 ease-in-out font-manrope text-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">rate_review</span> Review
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 ease-in-out font-manrope text-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">verified</span> Approve
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 ease-in-out font-manrope text-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">play_circle</span> Run
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT bg-white dark:bg-slate-900 text-blue-600 dark:text-blue-400 font-semibold border-r-2 border-blue-600 dark:border-blue-400 transition-all duration-200 ease-in-out font-manrope text-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">analytics</span> Reports
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 ease-in-out font-manrope text-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span> Settings
+            </a>
+</div>
+<div class="px-4 mt-auto border-t border-slate-200 dark:border-slate-800 pt-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 ease-in-out font-manrope text-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">contact_support</span> Support
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 ease-in-out font-manrope text-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">logout</span> Log Out
+            </a>
+</div>
+</nav>
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full h-14 flex items-center justify-between px-6 bg-white dark:bg-slate-900 shadow-sm dark:shadow-none border-b border-slate-200 dark:border-slate-800 z-50">
+<div class="flex items-center gap-4">
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-50 font-display-lg text-display-lg">TestOps Pro</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors rounded-full">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors rounded-full">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<a class="ml-2 font-manrope text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200" href="#">Docs</a>
+<div class="ml-4 w-8 h-8 rounded-full bg-slate-200 overflow-hidden border border-slate-300">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="A small profile avatar showing a professional person smiling slightly, lit with soft natural light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCB0ET-HfgCVRxR4EAi9wdaaE_4V_q7jMJArveR4F_GTS9zT9MKkiGae_SaBWzvDl91tIS19P4tiKOAs0_SXcvAXxwm55FBC3gsT5JW5QEQ4rIezQaabyq-TCitwzCBiHuxhMW9yQxJxbqqw3jn8l9FWBzG3nQBmOPtMUTfcfk2_qMch83Z0HN8vcxoBklIDrNpGTPsyv9TrH_q2V_h9L_nZ9D6WzjLHkuyagwIYfhn7n_wAdmrUwFs9yf7066FI1G5z4LO0m8z050"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 mt-14 md:ml-64 p-xl max-w-container-max mx-auto w-full flex flex-col h-[calc(100vh-3.5rem)] overflow-y-auto">
+<header class="mb-lg">
+<h1 class="font-headline-md text-headline-md text-on-surface">Export Session Data</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Configure and download your test session artifacts.</p>
+</header>
+<div class="flex-1 space-y-xl">
+<!-- Format Selection -->
+<section>
+<h2 class="font-label-caps text-label-caps uppercase text-on-surface-variant mb-md border-b border-surface-variant pb-xs">Format Selection</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Option 1: JSON -->
+<label class="relative flex cursor-pointer rounded-lg border bg-surface-container-lowest p-md shadow-[0px_4px_6px_rgba(0,0,0,0.05)] hover:border-primary focus-within:ring-2 focus-within:ring-primary-container transition-all border-primary ring-1 ring-primary">
+<input checked="" class="peer sr-only" name="export-format" type="radio" value="json"/>
+<div class="flex w-full items-start gap-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-DEFAULT bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">data_object</span>
+</div>
+<div class="flex-1">
+<span class="block font-headline-md text-[18px] text-on-surface mb-xs">JSON Data</span>
+<span class="block font-body-md text-body-md text-on-surface-variant">Raw machine-readable data for integration.</span>
+</div>
+<div class="flex-shrink-0 pt-1">
+<span class="material-symbols-outlined text-primary text-[20px] peer-checked:block hidden">check_circle</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px] peer-checked:hidden block">radio_button_unchecked</span>
+</div>
+</div>
+</label>
+<!-- Option 2: HTML -->
+<label class="relative flex cursor-pointer rounded-lg border border-outline-variant bg-surface-container-lowest p-md shadow-[0px_4px_6px_rgba(0,0,0,0.05)] hover:border-primary focus-within:ring-2 focus-within:ring-primary-container transition-all">
+<input class="peer sr-only" name="export-format" type="radio" value="html"/>
+<div class="flex w-full items-start gap-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-DEFAULT bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[24px]">description</span>
+</div>
+<div class="flex-1">
+<span class="block font-headline-md text-[18px] text-on-surface mb-xs">HTML Report</span>
+<span class="block font-body-md text-body-md text-on-surface-variant">Polished, interactive report for sharing.</span>
+</div>
+<div class="flex-shrink-0 pt-1">
+<span class="material-symbols-outlined text-primary text-[20px] peer-checked:block hidden">check_circle</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px] peer-checked:hidden block">radio_button_unchecked</span>
+</div>
+</div>
+</label>
+</div>
+</section>
+<!-- Content Checklist -->
+<section>
+<h2 class="font-label-caps text-label-caps uppercase text-on-surface-variant mb-md border-b border-surface-variant pb-xs">Select Content to Include</h2>
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant shadow-[0px_4px_6px_rgba(0,0,0,0.05)] overflow-hidden">
+<ul class="divide-y divide-surface-variant">
+<!-- Checkbox 1 -->
+<li class="p-md hover:bg-surface-container-low transition-colors">
+<label class="flex items-start gap-3 cursor-pointer">
+<div class="flex items-center h-6">
+<input checked="" class="w-5 h-5 rounded border-outline text-primary focus:ring-primary-container" type="checkbox"/>
+</div>
+<div class="flex-1">
+<span class="block font-data-tabular text-data-tabular text-on-surface">Session Information</span>
+<span class="block font-body-md text-[14px] text-on-surface-variant mt-1">(Metadata, timestamps, config)</span>
+</div>
+</label>
+</li>
+<!-- Checkbox 2 -->
+<li class="p-md hover:bg-surface-container-low transition-colors">
+<label class="flex items-start gap-3 cursor-pointer">
+<div class="flex items-center h-6">
+<input checked="" class="w-5 h-5 rounded border-outline text-primary focus:ring-primary-container" type="checkbox"/>
+</div>
+<div class="flex-1">
+<span class="block font-data-tabular text-data-tabular text-on-surface">Test Case Definitions</span>
+<span class="block font-body-md text-[14px] text-on-surface-variant mt-1">(Steps, assertions, tags)</span>
+</div>
+</label>
+</li>
+<!-- Checkbox 3 -->
+<li class="p-md hover:bg-surface-container-low transition-colors">
+<label class="flex items-start gap-3 cursor-pointer">
+<div class="flex items-center h-6">
+<input checked="" class="w-5 h-5 rounded border-outline text-primary focus:ring-primary-container" type="checkbox"/>
+</div>
+<div class="flex-1">
+<span class="block font-data-tabular text-data-tabular text-on-surface">Execution Results</span>
+<span class="block font-body-md text-[14px] text-on-surface-variant mt-1">(Logs, screenshots, metrics)</span>
+</div>
+</label>
+</li>
+<!-- Checkbox 4 -->
+<li class="p-md hover:bg-surface-container-low transition-colors">
+<label class="flex items-start gap-3 cursor-pointer">
+<div class="flex items-center h-6">
+<input class="w-5 h-5 rounded border-outline text-primary focus:ring-primary-container" type="checkbox"/>
+</div>
+<div class="flex-1">
+<span class="block font-data-tabular text-data-tabular text-on-surface">Audit Trail</span>
+<span class="block font-body-md text-[14px] text-on-surface-variant mt-1">(Full activity history)</span>
+</div>
+</label>
+</li>
+</ul>
+</div>
+</section>
+</div>
+<!-- Bottom Action Bar -->
+<footer class="mt-xl pt-lg border-t border-surface-variant flex items-center justify-end gap-md">
+<button class="px-6 py-2.5 rounded-DEFAULT border border-outline text-on-surface hover:bg-surface-container font-data-tabular text-data-tabular transition-colors" type="button">
+                Cancel
+            </button>
+<button class="flex items-center gap-2 px-6 py-2.5 rounded-DEFAULT bg-primary text-on-primary hover:bg-on-primary-fixed-variant shadow-sm font-data-tabular text-data-tabular transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                Download Export
+            </button>
+</footer>
+</main>
+</body></html>

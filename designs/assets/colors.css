@@ -1,0 +1,39 @@
+:root {
+  /* Primary */
+  --color-primary: #2563EB;
+  --color-primary-light: #DBEAFE;
+  --color-primary-dark: #1D4ED8;
+
+  /* Status */
+  --color-success: #16A34A;
+  --color-success-light: #DCFCE7;
+  --color-warning: #D97706;
+  --color-warning-light: #FEF3C7;
+  --color-danger: #DC2626;
+  --color-danger-light: #FEE2E2;
+  --color-info: #7C3AED;
+
+  /* Neutral */
+  --color-neutral-50: #F9FAFB;
+  --color-neutral-100: #F3F4F6;
+  --color-neutral-200: #E5E7EB;
+  --color-neutral-300: #D1D5DB;
+  --color-neutral-500: #6B7280;
+  --color-neutral-700: #374151;
+  --color-neutral-900: #111827;
+
+  /* Severity */
+  --severity-critical: #DC2626;
+  --severity-high: #EA580C;
+  --severity-medium: #D97706;
+  --severity-low: #2563EB;
+  --severity-informational: #6B7280;
+
+  /* Phases */
+  --phase-ingestion: #06B6D4;
+  --phase-generation: #8B5CF6;
+  --phase-functional: #2563EB;
+  --phase-performance: #F59E0B;
+  --phase-security: #DC2626;
+  --phase-complete: #16A34A;
+}

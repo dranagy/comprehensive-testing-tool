@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Edit Test Case: User Authentication Flow</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=Manrope:wght@500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed-dim": "#b4c5ff",
+                    "on-secondary-container": "#54647a",
+                    "on-surface-variant": "#434655",
+                    "tertiary-fixed": "#ffdbcd",
+                    "secondary": "#505f76",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "inverse-surface": "#2e3039",
+                    "surface-bright": "#faf8ff",
+                    "primary-container": "#2563eb",
+                    "on-tertiary-container": "#ffede6",
+                    "outline-variant": "#c3c6d7",
+                    "inverse-primary": "#b4c5ff",
+                    "on-surface": "#191b23",
+                    "on-tertiary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-secondary": "#ffffff",
+                    "tertiary": "#943700",
+                    "surface-container-low": "#f3f3fe",
+                    "secondary-fixed": "#d3e4fe",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed": "#0b1c30",
+                    "error-container": "#ffdad6",
+                    "surface-container-high": "#e7e7f3",
+                    "secondary-container": "#d0e1fb",
+                    "outline": "#737686",
+                    "tertiary-fixed-dim": "#ffb596",
+                    "surface-tint": "#0053db",
+                    "on-primary-fixed": "#00174b",
+                    "surface-container-highest": "#e1e2ed",
+                    "on-background": "#191b23",
+                    "surface-dim": "#d9d9e5",
+                    "inverse-on-surface": "#f0f0fb",
+                    "tertiary-container": "#bc4800",
+                    "primary": "#004ac6",
+                    "background": "#faf8ff",
+                    "secondary-fixed-dim": "#b7c8e1",
+                    "primary-fixed": "#dbe1ff",
+                    "on-tertiary-fixed": "#360f00",
+                    "on-secondary-fixed-variant": "#38485d",
+                    "surface-variant": "#e1e2ed",
+                    "surface": "#faf8ff",
+                    "surface-container": "#ededf9",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed-variant": "#7d2d00",
+                    "on-primary-container": "#eeefff",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "xs": "0.25rem",
+                    "container-max": "1440px",
+                    "xl": "2.5rem",
+                    "sm": "0.5rem",
+                    "gutter": "1.5rem",
+                    "base": "4px",
+                    "md": "1rem",
+                    "lg": "1.5rem"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "data-tabular": ["Inter"],
+                    "headline-md": ["Manrope"],
+                    "display-lg": ["Manrope"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "data-tabular": ["14px", {"lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["36px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-md text-body-md overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar Shared Component -->
+<header class="sticky top-0 z-50 flex items-center justify-between px-6 h-16 w-full bg-white dark:bg-slate-900 font-manrope text-sm font-medium docked full-width border-b border-slate-200 dark:border-slate-800 shadow-sm transition-all duration-200">
+<div class="flex items-center gap-md">
+<span class="text-lg font-bold tracking-tight text-slate-900 dark:text-white">TestOps Editor</span>
+<div class="h-6 w-px bg-slate-200 dark:bg-slate-800 mx-sm"></div>
+<div class="relative hidden md:flex items-center text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined absolute left-2 text-[18px]">search</span>
+<input class="pl-8 pr-4 py-1.5 bg-slate-50 dark:bg-slate-800 border-none rounded-full text-xs focus:ring-1 focus:ring-blue-600 w-64 outline-none" placeholder="Search components..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-sm">
+<button class="p-1.5 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors rounded-full active:opacity-80">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-1.5 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors rounded-full active:opacity-80">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<button class="p-1.5 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors rounded-full active:opacity-80">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+</div>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-caps text-label-caps hover:bg-surface-tint transition-colors active:opacity-80">
+                Publish Test
+            </button>
+<div class="w-8 h-8 rounded-full bg-surface-container overflow-hidden border border-outline-variant ml-sm cursor-pointer">
+<img alt="Engineer Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuWAn5-KrwG4ylt9LO_1_9D37VIvEO89UBoOpVAS8a8LFv87SRy1k60-JL3hq6ocpAyWBW9k6Q4Pej3NKwNGyYdDfl98Wven3G4QTMloJO_Sa3K8e_sAdabkoLFvTV9oQ97p7FunFXs6nnGh4fJ1EaIRqrbqsQOjeNCrYeJezqA2bnTK0feHDC5rAnnOqjNNuOC5xg8Esv0SFlXBtrvQW10CtJmO9T31EqbPumPSqQOQEZ_sNWJUE_TF8QWXssURHKNdTdW7yY9vQ"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar Shared Component -->
+<nav class="fixed left-0 top-0 h-full flex flex-col pt-16 z-40 bg-slate-50 dark:bg-slate-950 font-manrope text-xs tracking-wide docked w-64 border-r border-slate-200 dark:border-slate-800 flat no-shadows transition-all duration-150 ease-in-out">
+<div class="p-xl flex items-center gap-md border-b border-slate-200 dark:border-slate-800 mb-md">
+<div class="w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center border border-slate-200">
+<span class="material-symbols-outlined text-blue-600 dark:text-blue-400 font-black">science</span>
+</div>
+<div>
+<h2 class="text-blue-600 dark:text-blue-400 font-black text-sm">Core Framework</h2>
+<span class="text-slate-500 text-[10px]">v2.4.0-stable</span>
+</div>
+</div>
+<ul class="flex-1 px-sm space-y-1">
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-slate-500 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="grid_view">grid_view</span>
+                    Dashboard
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg bg-white dark:bg-slate-900 text-blue-600 dark:text-blue-400 border-r-2 border-blue-600 font-bold hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="inventory_2" data-weight="fill" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+                    Test Library
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-slate-500 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="play_circle">play_circle</span>
+                    Executions
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-slate-500 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="bug_report">bug_report</span>
+                    Defects
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-slate-500 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="monitoring">monitoring</span>
+                    Analytics
+                </a>
+</li>
+</ul>
+<div class="p-sm border-t border-slate-200 dark:border-slate-800 mt-auto">
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-slate-500 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="menu_book">menu_book</span>
+                        Docs
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-slate-500 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="contact_support">contact_support</span>
+                        Support
+                    </a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-6 p-xl max-w-5xl mx-auto flex flex-col gap-xl">
+<!-- Breadcrumbs -->
+<nav class="flex items-center text-sm text-on-surface-variant font-data-tabular">
+<a class="hover:text-primary transition-colors" href="#">Review</a>
+<span class="material-symbols-outlined text-[16px] mx-1 opacity-50">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">User Authentication Flow</a>
+<span class="material-symbols-outlined text-[16px] mx-1 opacity-50">chevron_right</span>
+<span class="text-on-surface font-medium">Edit</span>
+</nav>
+<!-- Header Section -->
+<section class="flex items-start justify-between border-b border-outline-variant pb-md">
+<div>
+<h1 class="text-display-lg font-display-lg text-on-surface">Edit Test Case: User Authentication Flow</h1>
+<p class="text-on-surface-variant mt-1">Modify execution steps and assertions to validate the authentication process.</p>
+</div>
+<div class="flex items-center gap-md shrink-0">
+<button class="px-md py-sm rounded-lg border border-outline-variant text-on-surface-variant font-label-caps text-label-caps hover:bg-surface-container hover:text-on-surface transition-colors">
+                    Cancel
+                </button>
+<button class="px-md py-sm rounded-lg bg-primary text-on-primary font-label-caps text-label-caps shadow-sm hover:bg-surface-tint transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">save</span>
+                    Save Changes
+                </button>
+</div>
+</section>
+<!-- Steps Section -->
+<section class="bg-surface-container-lowest rounded-xl shadow-[0_4px_6px_rgba(0,0,0,0.05)] border border-surface-variant p-xl flex flex-col gap-md">
+<div class="flex items-center justify-between mb-sm">
+<h2 class="text-headline-md font-headline-md text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">format_list_numbered</span>
+                    Execution Steps
+                </h2>
+<button class="px-md py-sm rounded-lg border border-primary text-primary font-label-caps text-label-caps hover:bg-surface-container-low transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">add</span>
+                    Add Step
+                </button>
+</div>
+<div class="flex flex-col gap-sm">
+<!-- Step 1 -->
+<div class="group relative flex items-start gap-md p-md bg-surface border border-outline-variant rounded-lg hover:border-primary transition-colors">
+<div class="pt-2 cursor-grab active:cursor-grabbing text-outline hover:text-on-surface">
+<span class="material-symbols-outlined">drag_indicator</span>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center font-label-caps text-label-caps text-on-surface-variant shrink-0 mt-1">
+                        1
+                    </div>
+<div class="grid grid-cols-12 gap-md flex-1">
+<div class="col-span-3">
+<label class="block text-xs font-label-caps text-on-surface-variant mb-1 uppercase tracking-widest">Action</label>
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-on-surface focus:ring-1 focus:ring-primary focus:border-primary outline-none font-data-tabular">
+<option selected="">Navigate</option>
+<option>Click</option>
+<option>Type</option>
+<option>Hover</option>
+</select>
+</div>
+<div class="col-span-4">
+<label class="block text-xs font-label-caps text-on-surface-variant mb-1 uppercase tracking-widest">Selector (Target)</label>
+<input class="w-full bg-surface-dim border border-outline-variant rounded-lg px-3 py-2 text-on-surface-variant opacity-70 cursor-not-allowed outline-none font-data-tabular" disabled="" type="text" value="-"/>
+</div>
+<div class="col-span-5">
+<label class="block text-xs font-label-caps text-on-surface-variant mb-1 uppercase tracking-widest">Value / Data</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-on-surface focus:ring-1 focus:ring-primary focus:border-primary outline-none font-data-tabular" type="text" value="/login"/>
+</div>
+<div class="col-span-12">
+<input class="w-full bg-transparent border-none p-0 text-sm text-on-surface-variant placeholder:text-outline focus:ring-0 outline-none" placeholder="Description (Optional)" type="text" value="Navigate to the login entry point."/>
+</div>
+</div>
+<button class="absolute top-md right-md text-outline hover:text-error opacity-0 group-hover:opacity-100 transition-opacity p-1">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+<!-- Step 2 -->
+<div class="group relative flex items-start gap-md p-md bg-surface border border-outline-variant rounded-lg hover:border-primary transition-colors">
+<div class="pt-2 cursor-grab active:cursor-grabbing text-outline hover:text-on-surface">
+<span class="material-symbols-outlined">drag_indicator</span>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center font-label-caps text-label-caps text-on-surface-variant shrink-0 mt-1">
+                        2
+                    </div>
+<div class="grid grid-cols-12 gap-md flex-1">
+<div class="col-span-3">
+<label class="block text-xs font-label-caps text-on-surface-variant mb-1 uppercase tracking-widest">Action</label>
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-on-surface focus:ring-1 focus:ring-primary focus:border-primary outline-none font-data-tabular">
+<option>Navigate</option>
+<option>Click</option>
+<option selected="">Type</option>
+<option>Hover</option>
+</select>
+</div>
+<div class="col-span-4">
+<label class="block text-xs font-label-caps text-on-surface-variant mb-1 uppercase tracking-widest">Selector (Target)</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-on-surface focus:ring-1 focus:ring-primary focus:border-primary outline-none font-data-tabular" type="text" value="input[name='email']"/>
+</div>
+<div class="col-span-5">
+<label class="block text-xs font-label-caps text-on-surface-variant mb-1 uppercase tracking-widest">Value / Data</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-on-surface focus:ring-1 focus:ring-primary focus:border-primary outline-none font-data-tabular" type="text" value="testuser@example.com"/>
+</div>
+<div class="col-span-12">
+<input class="w-full bg-transparent border-none p-0 text-sm text-on-surface-variant placeholder:text-outline focus:ring-0 outline-none" placeholder="Description (Optional)" type="text" value="Enter valid registered email."/>
+</div>
+</div>
+<button class="absolute top-md right-md text-outline hover:text-error opacity-0 group-hover:opacity-100 transition-opacity p-1">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+<!-- Step 3 -->
+<div class="group relative flex items-start gap-md p-md bg-surface border border-outline-variant rounded-lg hover:border-primary transition-colors">
+<div class="pt-2 cursor-grab active:cursor-grabbing text-outline hover:text-on-surface">
+<span class="material-symbols-outlined">drag_indicator</span>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center font-label-caps text-label-caps text-on-surface-variant shrink-0 mt-1">
+                        3
+                    </div>
+<div class="grid grid-cols-12 gap-md flex-1">
+<div class="col-span-3">
+<label class="block text-xs font-label-caps text-on-surface-variant mb-1 uppercase tracking-widest">Action</label>
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-on-surface focus:ring-1 focus:ring-primary focus:border-primary outline-none font-data-tabular">
+<option>Navigate</option>
+<option>Click</option>
+<option selected="">Type (Secure)</option>
+<option>Hover</option>
+</select>
+</div>
+<div class="col-span-4">
+<label class="block text-xs font-label-caps text-on-surface-variant mb-1 uppercase tracking-widest">Selector (Target)</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-on-surface focus:ring-1 focus:ring-primary focus:border-primary outline-none font-data-tabular" type="text" value="#password-field"/>
+</div>
+<div class="col-span-5 relative">
+<label class="block text-xs font-label-caps text-on-surface-variant mb-1 uppercase tracking-widest">Value / Data</label>
+<div class="relative flex items-center">
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg pl-3 pr-10 py-2 text-on-surface focus:ring-1 focus:ring-primary focus:border-primary outline-none font-data-tabular" type="password" value="secretpassword123"/>
+<span class="material-symbols-outlined absolute right-3 text-[18px] text-outline">visibility_off</span>
+</div>
+</div>
+<div class="col-span-12">
+<input class="w-full bg-transparent border-none p-0 text-sm text-on-surface-variant placeholder:text-outline focus:ring-0 outline-none" placeholder="Description (Optional)" type="text" value="Input account password."/>
+</div>
+</div>
+<button class="absolute top-md right-md text-outline hover:text-error opacity-0 group-hover:opacity-100 transition-opacity p-1">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Assertions Section -->
+<section class="bg-surface-container-lowest rounded-xl shadow-[0_4px_6px_rgba(0,0,0,0.05)] border border-surface-variant p-xl flex flex-col gap-md">
+<div class="flex items-center justify-between mb-sm">
+<h2 class="text-headline-md font-headline-md text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-tertiary-container">verified</span>
+                    Assertions
+                </h2>
+<button class="px-md py-sm rounded-lg border border-outline-variant text-on-surface-variant font-label-caps text-label-caps hover:bg-surface-container transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">add</span>
+                    Add Assertion
+                </button>
+</div>
+<div class="flex flex-col gap-sm">
+<!-- Assertion 1 -->
+<div class="group relative flex items-start gap-md p-md bg-surface border border-outline-variant rounded-lg hover:border-tertiary-container transition-colors">
+<div class="grid grid-cols-12 gap-md flex-1">
+<div class="col-span-4">
+<label class="block text-xs font-label-caps text-on-surface-variant mb-1 uppercase tracking-widest">Assertion Type</label>
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-on-surface focus:ring-1 focus:ring-tertiary-container focus:border-tertiary-container outline-none font-data-tabular">
+<option>Element is Visible</option>
+<option selected="">URL Contains</option>
+<option>Text Matches</option>
+<option>Element Exists</option>
+</select>
+</div>
+<div class="col-span-5">
+<label class="block text-xs font-label-caps text-on-surface-variant mb-1 uppercase tracking-widest">Expected Value</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-on-surface focus:ring-1 focus:ring-tertiary-container focus:border-tertiary-container outline-none font-data-tabular" type="text" value="/dashboard"/>
+</div>
+<div class="col-span-3">
+<label class="block text-xs font-label-caps text-on-surface-variant mb-1 uppercase tracking-widest">Target Selector <span class="normal-case font-normal opacity-70">(Optional)</span></label>
+<input class="w-full bg-surface-dim border border-outline-variant rounded-lg px-3 py-2 text-on-surface-variant opacity-70 cursor-not-allowed outline-none font-data-tabular" disabled="" type="text" value="-"/>
+</div>
+</div>
+<button class="mt-6 text-outline hover:text-error opacity-0 group-hover:opacity-100 transition-opacity p-1">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Spacer for bottom breathing room -->
+<div class="h-xl"></div>
+</main>
+</body></html>
