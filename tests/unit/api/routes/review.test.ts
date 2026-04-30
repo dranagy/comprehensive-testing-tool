@@ -1,13 +1,8 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import request from "supertest";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
 import { app } from "../../../../src/api/server.js";
 import { getDb } from "../../../../src/api/db.js";
 import { ApprovalGateManager } from "../../../../src/core/approval-gate.js";
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const MD_FIXTURE = path.resolve(__dirname, "../../../fixtures/test-cases.md");
 
 beforeEach(() => {
   getDb(":memory:");
