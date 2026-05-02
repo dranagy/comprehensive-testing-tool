@@ -1,0 +1,27 @@
+{
+  "target": "all",
+  "browsers": [
+    "chromium"
+  ],
+  "performance": {
+    "virtualUsers": 50,
+    "rampUpSeconds": 30,
+    "durationSeconds": 60,
+    "sla": {
+      "responseTimeP95Ms": 2000,
+      "errorRateMax": 0.01,
+      "throughputMinRps": 100
+    }
+  },
+  "security": {
+    "zapPath": "",
+    "passiveScan": true,
+    "activeScan": true,
+    "severityThreshold": "MEDIUM"
+  },
+  "output": {
+    "format": "terminal",
+    "screenshots": true,
+    "networkLogs": true
+  }
+}

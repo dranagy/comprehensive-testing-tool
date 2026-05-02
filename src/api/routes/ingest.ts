@@ -1,6 +1,7 @@
 import { Router } from "express";
 import multer from "multer";
 import path from "node:path";
+import fs from "node:fs";
 import os from "node:os";
 import { v4 as uuidv4 } from "uuid";
 import { SessionManager } from "../../core/session.js";
@@ -48,8 +49,15 @@ ingestRouter.post(
     let totalTests = 0;
 
     for (const file of files) {
+      // Rename the multer temp file to include the original extension so the
+      // ingester can detect the file format from the path.
+      const originalExt = path.extname(file.originalname).toLowerCase();
+      const filePath = originalExt ? `${file.path}${originalExt}` : file.path;
+      if (originalExt) {
+        fs.renameSync(file.path, filePath);
+      }
       try {
-        const parsedDoc = await ingester.ingest(file.path);
+        const parsedDoc = await ingester.ingest(filePath);
         const definitions = await generator.generate([parsedDoc]);
 
         const testCases: TestCase[] = definitions.map((def) => ({
@@ -88,6 +96,11 @@ ingestRouter.post(
           testsGenerated: 0,
           error: err instanceof Error ? err.message : String(err),
         });
+      } finally {
+        // Clean up renamed temp file
+        if (originalExt) {
+          fs.unlink(filePath, () => {});
+        }
       }
     }
 
