@@ -58,8 +58,9 @@ test.describe("Settings", () => {
     await page.goto("/settings");
     await expect(page.locator("main").getByText("Loading settings...")).not.toBeVisible({ timeout: 8_000 });
 
-    // firefox checkbox (the label text is "firefox" as a sibling of the checkbox)
-    const firefoxCheckbox = page.locator('input[type="checkbox"]').nth(1);
+    // The browser checkboxes are inside label elements whose text is the browser name
+    const firefoxLabel = page.locator('label').filter({ hasText: 'firefox' });
+    const firefoxCheckbox = firefoxLabel.locator('input[type="checkbox"]');
     const initialState = await firefoxCheckbox.isChecked();
 
     // Toggle it

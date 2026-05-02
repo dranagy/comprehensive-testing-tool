@@ -99,7 +99,7 @@ test.describe.serial("Session Workflow", () => {
     await expect(page.locator("main").getByText("Loading...")).not.toBeVisible({ timeout: 8_000 });
 
     // Should show approval gates or empty state
-    const hasGates = await page.locator(".border-l-4").first().isVisible().catch(() => false);
+    const hasGates = await page.locator('[role="listitem"], [class*="border-l"]').first().isVisible().catch(() => false);
     const hasEmpty = await page.getByText("No approval gates found.").isVisible().catch(() => false);
     expect(hasGates || hasEmpty).toBe(true);
   });

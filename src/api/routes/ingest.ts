@@ -99,7 +99,9 @@ ingestRouter.post(
       } finally {
         // Clean up renamed temp file
         if (originalExt) {
-          fs.unlink(filePath, () => {});
+          fs.unlink(filePath, (err) => {
+            if (err) console.warn(`[ingest] Failed to clean up temp file ${filePath}:`, err.message);
+          });
         }
       }
     }
